@@ -67,6 +67,7 @@ class DriveSystem(object):
         self.left_motor = Motor('B')
         self.right_motor = Motor('C')
 
+
         self.wheel_circumference = 1.3 * math.pi
 
     # -------------------------------------------------------------------------
@@ -190,11 +191,27 @@ class ArmAndClaw(object):
         """
         self.touch_sensor = touch_sensor
         self.motor = Motor('A', motor_type='medium')
+        self.motor.position = 0
 
     def raise_arm(self):
         """ Raises the Arm until its touch sensor is pressed. """
+        self.motor.turn_on(100)
+        while True:
+            if self.touch_sensor.is_pressed():
+                self.motor.turn_off()
+                break
+
 
     def calibrate_arm(self):
+        # self.motor.turn_on(100)
+        # while True:
+        #     if self.touch_sensor.is_pressed():
+        #         self.motor.turn_off()
+        #         break
+        # self.move_arm_to_position(0)
+
+
+
         """
         Calibrates its Arm, that is:
           1. Raises its Arm until it is all the way UP
