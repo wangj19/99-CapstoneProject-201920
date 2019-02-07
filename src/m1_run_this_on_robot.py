@@ -12,12 +12,9 @@ import shared_gui_delegate_on_robot as rec
 
 
 def main():
-    run_test_arm()
+
     real_thing()
 
-def run_test_arm():
-    robot = rosebot.RoseBot()
-    robot.arm_and_claw.raise_arm()
 
 def real_thing():
     robot = rosebot.RoseBot()
