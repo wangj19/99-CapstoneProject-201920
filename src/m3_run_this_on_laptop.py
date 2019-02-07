@@ -3,7 +3,7 @@
   Displays the Graphical User Interface (GUI) and communicates with the robot.
 
   Authors:  Your professors (for the framework)
-    and PUT_YOUR_NAME_HERE.
+    and Chen Li.
   Winter term, 2018-2019.
 """
 
@@ -22,17 +22,20 @@ def main():
     # -------------------------------------------------------------------------
     # Construct and connect the MQTT Client:
     # -------------------------------------------------------------------------
-
+    mqtt_sender = com.MqttClient()
+    mqtt_sender.connect_to_ev3()
 
     # -------------------------------------------------------------------------
     # The root TK object for the GUI:
     # -------------------------------------------------------------------------
-
+    root = tkinter.Tk
+    root.title("CSSE 120 Capstone Project")
 
     # -------------------------------------------------------------------------
     # The main frame, upon which the other frames are placed.
     # -------------------------------------------------------------------------
-
+    main_frame = ttk.Frame(root, padding = 10, borderwidth = 5, relief = "groove")
+    main_frame.grid()
 
     # -------------------------------------------------------------------------
     # Sub-frames for the shared GUI that the team developed:
@@ -42,17 +45,17 @@ def main():
     # -------------------------------------------------------------------------
     # Frames that are particular to my individual contributions to the project.
     # -------------------------------------------------------------------------
-    # TODO: Implement and call get_my_frames(...)
+    teleop_frame, arm_frame, control_frame = get_shared_frames(main_frame, mqtt_sender)
 
     # -------------------------------------------------------------------------
     # Grid the frames.
     # -------------------------------------------------------------------------
-
+    grid_frames(teleop_frame, arm_frame, control_frame)
 
     # -------------------------------------------------------------------------
     # The event loop:
     # -------------------------------------------------------------------------
-
+    root.mainloop()
 
 
 def get_shared_frames(main_frame, mqtt_sender):
