@@ -78,8 +78,10 @@ class DriveSystem(object):
         """ Makes the left and right wheel motors spin at the given speeds. """
         self.left_motor.turn_on(left_wheel_speed)
         self.right_motor.turn_on(right_wheel_speed)
-    def stop(self):
 
+    def stop(self):
+        self.right_motor.turn_off()
+        self.right_motor.turn_off()
         """ Stops the left and right wheel motors. """
 
     def go_straight_for_seconds(self, seconds, speed):
