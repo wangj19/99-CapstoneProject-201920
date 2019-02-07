@@ -158,7 +158,7 @@ def get_control_frame(window, mqtt_sender):
 ###############################################################################
 def handle_forward(left_entry_box, right_entry_box, mqtt_sender):
     print('Got Forward', left_entry_box.get(), right_entry_box.get())
-    mqtt_sender.send_message('Forward',[left_entry_box.get(), right_entry_box.get()])
+    mqtt_sender.send_message('forward',[left_entry_box.get(), right_entry_box.get()])
     """
     Tells the robot to move using the speeds in the given entry boxes,
     with the speeds used as given.
