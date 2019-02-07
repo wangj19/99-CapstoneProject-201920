@@ -12,6 +12,9 @@ import mqtt_remote_method_calls as com
 import tkinter
 from tkinter import ttk
 import shared_gui
+import rosebot
+import time
+import shared_gui_delegate_on_robot as Receiver
 
 
 
@@ -31,9 +34,8 @@ def main():
     # -------------------------------------------------------------------------
     # The root TK object for the GUI:
     # -------------------------------------------------------------------------
-    root = tkinter.Tk
-    root.title("CSSE 120 Capstome Project")
-
+    root = tkinter.Tk()
+    root.title("CSSE 120 Capstone Project")
 
 
 
@@ -47,7 +49,6 @@ def main():
     # -------------------------------------------------------------------------
     # Sub-frames for the shared GUI that the team developed:
     # -------------------------------------------------------------------------
-    get_shared_frames()
 
     # -------------------------------------------------------------------------
     # Frames that are particular to my individual contributions to the project.
@@ -78,6 +79,15 @@ def grid_frames(teleop_frame, arm_frame, control_frame):
     teleop_frame.grid(row=0,column=0)
     arm_frame.grid(row=1,column = 0)
     control_frame.grid(row=2, column =0)
+
+def real_thing():
+    robot = rosebot.RoseBot()
+    receiver = rec.Receiver(robot)
+    mqtt_receiver = com.MqttClient(receiver)
+    mqtt_receiver.connect_to_pc()
+
+    while True:
+        time.sleep(0.01)
 
 
 
