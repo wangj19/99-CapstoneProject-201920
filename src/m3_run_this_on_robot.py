@@ -25,6 +25,7 @@ def real_thing():
     mqtt_receiver = com.MqttClient(receiver)
     mqtt_receiver.connect_to_pc()
 
+
     while True:
         time.sleep(0.01)
 
