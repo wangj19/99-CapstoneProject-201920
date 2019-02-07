@@ -10,7 +10,7 @@
     -- Lower-level code to interact with the EV3 robot library.
 
   Author:  Your professors (for the framework and lower-level code)
-    and PUT_YOUR_NAMES_HERE.
+    and Jiadi Wang, Jingyi Jia, and Chen Li.
   Winter term, 2018-2019.
 """
 
@@ -157,6 +157,8 @@ def get_control_frame(window, mqtt_sender):
 # Handlers for Buttons in the Teleoperation frame.
 ###############################################################################
 def handle_forward(left_entry_box, right_entry_box, mqtt_sender):
+    print('Got Forward', left_entry_box.get(), right_entry_box.get())
+    mqtt_sender.send_message('Forward',[left_entry_box.get(), right_entry_box.get()])
     """
     Tells the robot to move using the speeds in the given entry boxes,
     with the speeds used as given.
