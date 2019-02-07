@@ -20,7 +20,7 @@ def real_thing():
     robot = rosebot.RoseBot()
     receiver = rec.Receiver(robot)
     mqtt_receiver = com.MqttClient(receiver)
-    mqtt_receiver.connect_t0_pc()
+    mqtt_receiver.connect_to_pc()
 
     while True:
         time.sleep(0.01)
