@@ -7,3 +7,10 @@
   Winter term, 2018-2019.
 """
 
+class Reciever(object):
+    def __init__(self,robot):
+        self.robot = robot
+
+    def forward(self,left_wheel_speed, right_wheel_speed):
+        print('Got forward', left_wheel_speed,right_wheel_speed)
+        self.robot.drive_system.go(int(left_wheel_speed), int(right_wheel_speed))
