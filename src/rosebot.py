@@ -157,6 +157,11 @@ class DriveSystem(object):
     # Methods for driving that use the infrared proximity sensor.
     # -------------------------------------------------------------------------
     def go_forward_until_distance_is_less_than(self, inches, speed):
+        self.go(speed,speed)
+        while True:
+            if InfraredProximitySensor.get_distance() > inches:
+                self.stop()
+                break
         """
         Goes forward at the given speed until the robot is less than
         the given number of inches from the nearest object that it senses.
