@@ -12,9 +12,7 @@ import mqtt_remote_method_calls as com
 import tkinter
 from tkinter import ttk
 import shared_gui
-import rosebot
-import time
-import shared_gui_delegate_on_robot as Receiver
+
 
 
 
@@ -80,14 +78,7 @@ def grid_frames(teleop_frame, arm_frame, control_frame):
     arm_frame.grid(row=1,column = 0)
     control_frame.grid(row=2, column =0)
 
-def real_thing():
-    robot = rosebot.RoseBot()
-    receiver = rec.Receiver(robot)
-    mqtt_receiver = com.MqttClient(receiver)
-    mqtt_receiver.connect_to_pc()
 
-    while True:
-        time.sleep(0.01)
 
 
 
