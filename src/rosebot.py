@@ -221,7 +221,7 @@ class ArmAndClaw(object):
         """
         self.touch_sensor = touch_sensor
         self.motor = Motor('A', motor_type='medium')
-        self.motor.position = 0
+        self.motor.angle = 0
 
     def raise_arm(self):
         """ Raises the Arm until its touch sensor is pressed. """
@@ -233,16 +233,16 @@ class ArmAndClaw(object):
 
 
     def calibrate_arm(self):
-        self.motor.turn_on(100)
+        start = self.motor.get_position()
+        self.raise_arm()
+        positiondiff = self.motor.get_position() - start
+        self.motor.turn_on(-100)
+        position = self.motor.get_position()
         while True:
-            if self.touch_sensor.is_pressed():
+            if self.motor.get_position()-position > positiondiff:
                 self.motor.turn_off()
                 break
-
-        self.motor.run()
-
-
-
+        self.motor.reset_position()
 
 
         """
@@ -255,12 +255,31 @@ class ArmAndClaw(object):
         """
 
     def move_arm_to_position(self, desired_arm_position):
+        position = self.motor.get_position()
+        self.motor.turn_on(100)
+        while True:
+            if desired_arm_position - position < self.motor.get_position() - position:
+                self.motor.turn_off()
+                break
+
+
+
         """
         Move its Arm to the given position, where 0 means all the way DOWN.
         The robot must have previously calibrated its Arm.
         """
 
     def lower_arm(self):
+        position = self.motor.get_position()
+        self.move_arm_to_position()
+        diff = self.motor.get_position() - position
+        self.motor.turn_on(-100)
+        while True:
+            if self.motor.get_position()> diff:
+                self.motor.turn_off()
+                break
+
+
         """
         Lowers the Arm until it is all the way down, i.e., position 0.
         The robot must have previously calibrated its Arm.
