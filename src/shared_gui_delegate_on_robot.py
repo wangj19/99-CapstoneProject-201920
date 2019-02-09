@@ -8,7 +8,8 @@
 """
 
 class Receiver(object):
-    def __init__(self,robot):
+    def __init__(self, robot):
+        ''':type robot: rosebot.Rosebot'''
         self.robot = robot
 
     def forward(self,left_wheel_speed, right_wheel_speed):

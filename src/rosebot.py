@@ -218,7 +218,10 @@ class ArmAndClaw(object):
             if self.touch_sensor.is_pressed():
                 self.motor.turn_off()
                 break
-        self.move_arm_to_position(0)
+
+        self.motor.run()
+
+
 
 
 
