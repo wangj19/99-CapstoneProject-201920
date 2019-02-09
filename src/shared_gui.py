@@ -216,6 +216,8 @@ def handle_stop(mqtt_sender):
 # Handlers for Buttons in the ArmAndClaw frame.
 ###############################################################################
 def handle_raise_arm(mqtt_sender):
+    print('Raise Arm')
+    mqtt_sender.send_message('raise_arm')
     """
     Tells the robot to raise its Arm until its touch sensor is pressed.
       :type  mqtt_sender:  com.MqttClient
@@ -223,6 +225,8 @@ def handle_raise_arm(mqtt_sender):
 
 
 def handle_lower_arm(mqtt_sender):
+    print('Lower Arm')
+    mqtt_sender.send_message('lower_arm')
     """
     Tells the robot to lower its Arm until it is all the way down.
       :type  mqtt_sender:  com.MqttClient
@@ -230,6 +234,8 @@ def handle_lower_arm(mqtt_sender):
 
 
 def handle_calibrate_arm(mqtt_sender):
+    print('Calibrate Arm')
+    mqtt_sender.send_message('calibrate_arm')
     """
     Tells the robot to calibrate its Arm, that is, first to raise its Arm
     until its touch sensor is pressed, then to lower its Arm until it is
