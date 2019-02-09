@@ -94,7 +94,7 @@ class DriveSystem(object):
 
 
     def go_straight_for_inches_using_time(self, inches, speed):
-        expected_time = inches*10/speed
+        expected_time = abs(inches*10/speed)
         self.go_straight_for_seconds(expected_time,speed)
 
         """
@@ -123,12 +123,19 @@ class DriveSystem(object):
     # -------------------------------------------------------------------------
 
     def go_straight_until_intensity_is_less_than(self, intensity, speed):
+        self.go(speed,speed)
+        while True:
+            if abs(ColorSensor.get_reflected_light_intensity())> intensity:
+                self.stop()
+                break
         """
         Goes straight at the given speed until the intensity returned
         by the color_sensor is less than the given intensity.
         """
 
     def go_straight_until_intensity_is_greater_than(self, intensity, speed):
+        if abs(ColorSensor.get_reflected_light_intensity()) > intensity:
+            self.go(speed,speed)
         """
         Goes straight at the given speed until the intensity returned
         by the color_sensor is greater than the given intensity.
@@ -265,10 +272,9 @@ class SensorSystem(object):
     """
     def __init__(self):
         self.touch_sensor = TouchSensor(1)
-        # These need the port numbers
-        # self.color_sensor = ColorSensor()
-        # self.ir_proximity_sensor = InfraredProximitySensor()
-        # self.ir_beacon_sensor = InfraredBeaconSensor()
+        self.color_sensor = ColorSensor(2)
+        self.ir_proximity_sensor = InfraredProximitySensor(3)
+        self.ir_beacon_sensor = InfraredBeaconSensor(4)
 
         # These need some configuration
         # self.beacon_system =
