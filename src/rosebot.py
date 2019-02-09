@@ -321,6 +321,14 @@ class SoundSystem(object):
         self.song_maker = song_maker
 
     def tones_until_touch_sensor_is_pressed(self):
+        while True:
+            if self.tones_until_touch_sensor_is_pressed():
+                self.tone_maker.tone(0, 0)
+                break
+            for k in range(100, 1000, 50):
+                self.tone_maker.tone(k, 100000)
+
+
 
 
         """
@@ -342,6 +350,7 @@ class LEDSystem(object):
         self.right_led = LED()
 
     def turn_both_leds_off(self):
+
         """ Turns the left and right LEDs off. """
 
     def only_left_on(self):
