@@ -245,6 +245,8 @@ def handle_calibrate_arm(mqtt_sender):
 
 
 def handle_move_arm_to_position(arm_position_entry, mqtt_sender):
+    print('Move Arm To', arm_position_entry.get())
+    mqtt_sender.send_message('move_arm_to_position', [arm_position_entry.get()])
     """
     Tells the robot to move its Arm to the position in the given Entry box.
     The robot must have previously calibrated its Arm.

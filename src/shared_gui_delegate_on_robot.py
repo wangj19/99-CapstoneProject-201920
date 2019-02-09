@@ -43,3 +43,7 @@ class Receiver(object):
     def calibrate_arm(self):
         print('Calibrate Arm')
         self.robot.arm_and_claw.calibrate_arm()
+
+    def move_arm_to_position(self, desired_arm_position):
+        print('Move Arm To', int(desired_arm_position))
+        self.robot.arm_and_claw.move_arm_to_position(desired_arm_position)
