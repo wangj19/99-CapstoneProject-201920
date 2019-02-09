@@ -94,6 +94,8 @@ class DriveSystem(object):
 
 
     def go_straight_for_inches_using_time(self, inches, speed):
+        expected_time = inches*10/speed
+        self.go_straight_for_seconds(expected_time,speed)
 
         """
         Makes the robot go straight at the given speed
