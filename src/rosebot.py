@@ -94,7 +94,7 @@ class DriveSystem(object):
 
 
     def go_straight_for_inches_using_time(self, inches, speed):
-        
+
         """
         Makes the robot go straight at the given speed
         for the given number of inches, using the approximate
