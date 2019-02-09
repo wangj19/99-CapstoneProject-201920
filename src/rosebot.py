@@ -80,17 +80,21 @@ class DriveSystem(object):
         self.right_motor.turn_on(right_wheel_speed)
 
     def stop(self):
-        self.right_motor.turn_off()
+        self.left_motor.turn_off()
         self.right_motor.turn_off()
         """ Stops the left and right wheel motors. """
 
     def go_straight_for_seconds(self, seconds, speed):
-        """
-        Makes the robot go straight (forward if speed > 0, else backward)
-        at the given speed for the given number of seconds.
-        """
+        start = time.time()
+        self.go(speed, speed)
+        while True:
+            if time.time() - start >= seconds:
+                self.stop()
+                break
+
 
     def go_straight_for_inches_using_time(self, inches, speed):
+        
         """
         Makes the robot go straight at the given speed
         for the given number of inches, using the approximate
