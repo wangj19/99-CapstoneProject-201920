@@ -14,6 +14,7 @@
 import ev3dev.ev3 as ev3
 import time
 import math
+import winsound
 
 
 ###############################################################################
@@ -342,9 +343,12 @@ class LEDSystem(object):
         self.right_led = LED()
 
     def turn_both_leds_off(self):
+
+        
         """ Turns the left and right LEDs off. """
 
     def only_left_on(self):
+
         """ Turns the left LED on and the right LED off """
 
 ###############################################################################
@@ -465,6 +469,7 @@ class Beeper(object):
         self._beeper = ev3.Sound
 
     def beep(self):
+        self._beeper.play_song(50,50,50)
         # DCM: Indicate that this is NON-blocking.
         # DCM: Indicate that returns a subprocess.Popen, which has a WAIT method
         return self._beeper.beep()
