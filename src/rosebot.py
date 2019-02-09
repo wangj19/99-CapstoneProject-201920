@@ -104,6 +104,13 @@ class DriveSystem(object):
         """
 
     def go_straight_for_inches_using_encoder(self, inches, speed):
+        inches_per_degree = self.left_motor.WheelCircumference / 360
+        desired_degrees = inches / inches_per_degree
+        self.left_motor.reset_position()
+        self.go(speed,speed)
+        while abs(self.left_motor.get_position())> desired_degrees:
+            self.stop()
+            break
         """
         Makes the robot go straight (forward if speed > 0, else backward)
         at the given speed for the given number of inches,
