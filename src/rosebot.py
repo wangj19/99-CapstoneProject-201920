@@ -275,7 +275,7 @@ class ArmAndClaw(object):
         diff = self.motor.get_position() - position
         self.motor.turn_on(-100)
         while True:
-            if self.motor.get_position()> diff:
+            if self.motor.get_position() > diff:
                 self.motor.turn_off()
                 break
 
@@ -321,6 +321,8 @@ class SoundSystem(object):
         self.song_maker = song_maker
 
     def tones_until_touch_sensor_is_pressed(self):
+
+
         """
         Plays an increasing sequence of short tones,
         stopping when the touch sensor is pressed.
