@@ -14,7 +14,6 @@
 import ev3dev.ev3 as ev3
 import time
 import math
-import winsound
 
 
 ###############################################################################
@@ -322,6 +321,14 @@ class SoundSystem(object):
         self.song_maker = song_maker
 
     def tones_until_touch_sensor_is_pressed(self):
+        while True:
+            if self.tones_until_touch_sensor_is_pressed():
+                self.tone_maker.tone(0, 0)
+                break
+            for k in range(100, 1000, 50):
+                self.tone_maker.tone(k, 100000)
+
+
 
 
         """
@@ -344,11 +351,9 @@ class LEDSystem(object):
 
     def turn_both_leds_off(self):
 
-        
         """ Turns the left and right LEDs off. """
 
     def only_left_on(self):
-
         """ Turns the left LED on and the right LED off """
 
 ###############################################################################
@@ -469,7 +474,6 @@ class Beeper(object):
         self._beeper = ev3.Sound
 
     def beep(self):
-        self._beeper.play_song(50,50,50)
         # DCM: Indicate that this is NON-blocking.
         # DCM: Indicate that returns a subprocess.Popen, which has a WAIT method
         return self._beeper.beep()

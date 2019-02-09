@@ -31,3 +31,15 @@ class Receiver(object):
     def right(self,left_wheel_speed, right_wheel_speed):
         print('Go right', left_wheel_speed, -int(right_wheel_speed))
         self.robot.drive_system.go(int(left_wheel_speed), -int(right_wheel_speed))
+
+    def raise_arm(self):
+        print('Raise Arm')
+        self.robot.arm_and_claw.raise_arm()
+
+    def lower_arm(self):
+        print('Lower Arm')
+        self.robot.arm_and_claw.lower_arm()
+
+    def calibrate_arm(self):
+        print('Calibrate Arm')
+        self.robot.arm_and_claw.calibrate_arm()
