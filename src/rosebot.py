@@ -325,8 +325,8 @@ class SoundSystem(object):
             if self.tones_until_touch_sensor_is_pressed():
                 self.tone_maker.tone(0, 0)
                 break
-            for k in range(100, 1000, 50):
-                self.tone_maker.tone(k, 100000)
+            for k in range(100, math.inf, 5):
+                self.tone_maker.tone(k, 5)
 
 
 
