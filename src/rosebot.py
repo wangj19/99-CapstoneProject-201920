@@ -162,7 +162,7 @@ class DriveSystem(object):
             if InfraredProximitySensor.get_distance() > inches:
                 self.stop()
                 break
-        """
+        """ 
         Goes forward at the given speed until the robot is less than
         the given number of inches from the nearest object that it senses.
         """
