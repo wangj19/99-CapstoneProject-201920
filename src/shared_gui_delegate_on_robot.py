@@ -21,5 +21,13 @@ class Receiver(object):
         self.robot.drive_system.stop()
 
     def backward(self,left_wheel_speed, right_wheel_speed):
-        print('Got Backward', left_wheel_speed,right_wheel_speed)
+        print('Got Backward', -int(left_wheel_speed),-int(right_wheel_speed))
         self.robot.drive_system.go(-int(left_wheel_speed), -int(right_wheel_speed))
+
+    def left(self,left_wheel_speed, right_wheel_speed):
+        print('Go Left', -int(left_wheel_speed), right_wheel_speed)
+        self.robot.drive_system.go(-int(left_wheel_speed), int(right_wheel_speed))
+
+    def right(self,left_wheel_speed, right_wheel_speed):
+        print('Go right', left_wheel_speed, -int(right_wheel_speed))
+        self.robot.drive_system.go(int(left_wheel_speed), -int(right_wheel_speed))
