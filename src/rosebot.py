@@ -281,7 +281,7 @@ class ArmAndClaw(object):
                     self.motor.turn_off()
                     break
 
-                    
+
 
 
 
