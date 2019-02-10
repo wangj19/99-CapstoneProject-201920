@@ -125,7 +125,7 @@ class DriveSystem(object):
     def go_straight_until_intensity_is_less_than(self, intensity, speed):
         self.go(speed,speed)
         while True:
-            if abs(ColorSensor.get_reflected_light_intensity())> intensity:
+            if abs(self.sensor_system.color_sensor.get_reflected_light_intensity())> intensity:
                 self.stop()
                 break
         """
@@ -159,7 +159,7 @@ class DriveSystem(object):
     def go_forward_until_distance_is_less_than(self, inches, speed):
         self.go(speed,speed)
         while True:
-            if InfraredProximitySensor.get_distance() > inches:
+            if self.sensor_system.ir_proximity_sensor.get_distance() <= inches:
                 self.stop()
                 break
         """ 
@@ -168,6 +168,11 @@ class DriveSystem(object):
         """
 
     def go_backward_until_distance_is_greater_than(self, inches, speed):
+        self.go(-speed,-speed)
+        while True:
+            if self.sensor_system.ir_proximity_sensor.get_distance() >= inches:
+                self.stop()
+                break
         """
         Goes straight at the given speed until the robot is greater than
         the given number of inches from the nearest object that it senses.
@@ -175,6 +180,16 @@ class DriveSystem(object):
         """
 
     def go_until_distance_is_within(self, delta_inches, speed):
+        x = self.sensor_system.ir_proximity_sensor.get_distance()
+        while True:
+            if x >= delta_inches:
+                self.go(speed,speed)
+            if x < delta_inches:
+                self.go(-speed,-speed)
+            else:
+                self.stop()
+                break
+
         """
         Goes forward or backward, repeated as necessary, until the robot is
         within the given delta-inches from the nearest object that it senses.
