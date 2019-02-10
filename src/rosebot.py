@@ -221,7 +221,7 @@ class ArmAndClaw(object):
         """
         self.touch_sensor = touch_sensor
         self.motor = Motor('A', motor_type='medium')
-        self.motor.angle = 0
+
 
     def raise_arm(self):
         """ Raises the Arm until its touch sensor is pressed. """
@@ -233,13 +233,11 @@ class ArmAndClaw(object):
 
 
     def calibrate_arm(self):
-        start = self.motor.get_position()
         self.raise_arm()
-        positiondiff = self.motor.get_position() - start
+        self.motor.reset_position()
         self.motor.turn_on(-100)
-        position = self.motor.get_position()
         while True:
-            if self.motor.get_position()-position > positiondiff:
+            if self.motor.get_position()< (-14.2*360):
                 self.motor.turn_off()
                 break
         self.motor.reset_position()
@@ -255,13 +253,19 @@ class ArmAndClaw(object):
         """
 
     def move_arm_to_position(self, desired_arm_position):
-        position = self.motor.get_position()
-        self.motor.turn_on(100)
-        while True:
-            if desired_arm_position - position < self.motor.get_position() - position:
-                self.motor.turn_off()
-                break
+        if self.motor.get_position() > desired_arm_position:
+            self.motor.turn_on(-100)
+            while True:
+                if self.motor.get_position() < desired_arm_position:
+                    self.motor.turn_off()
+                    break
 
+        if self.motor.get_position() < desired_arm_position:
+            self.motor.turn_on(100)
+            while True:
+                if self.motor.get_position() > desired_arm_position:
+                    self.motor.turn_off()
+                    break
 
 
         """
@@ -270,14 +274,15 @@ class ArmAndClaw(object):
         """
 
     def lower_arm(self):
-        position = self.motor.get_position()
-        self.move_arm_to_position()
-        diff = self.motor.get_position() - position
-        self.motor.turn_on(-100)
-        while True:
-            if self.motor.get_position() > diff:
-                self.motor.turn_off()
-                break
+        if self.motor.get_position() != 0:
+            self.motor.turn_on(-100)
+            while True:
+                if self.motor.get_position() == 0:
+                    self.motor.turn_off()
+                    break
+
+                    
+
 
 
         """
