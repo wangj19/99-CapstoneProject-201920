@@ -277,7 +277,7 @@ class ArmAndClaw(object):
         if self.motor.get_position() != 0:
             self.motor.turn_on(-100)
             while True:
-                if self.motor.get_position() == 0:
+                if self.motor.get_position() <= 5:
                     self.motor.turn_off()
                     break
 
