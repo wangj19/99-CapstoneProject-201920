@@ -134,7 +134,7 @@ class DriveSystem(object):
         """
 
     def go_straight_until_intensity_is_greater_than(self, intensity, speed):
-        if abs(ColorSensor.get_reflected_light_intensity()) > intensity:
+        if abs(self.sensor_system.color_sensor.get_reflected_light_intensity()) > intensity:
             self.go(speed,speed)
         """
         Goes straight at the given speed until the intensity returned
