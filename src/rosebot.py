@@ -953,7 +953,7 @@ class LED(object):
           left_led.set_color_by_name(self.GREEN)
           left_led.set_color_by_name((0.5, 0.33))
         """
-        ev3.Leds.set_color(self.which_led_code, color_name)
+        ev3.Leds.set_color( self.which_led_code, color_name)
 
     def set_color_by_fractions(self, fraction_red, fraction_green):
         """
