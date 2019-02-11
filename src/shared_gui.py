@@ -178,7 +178,7 @@ def get_sound_control_frame(window, mqtt_sender):
     frequency_entry = ttk.Entry(frame, width =8)
     duration_label = ttk.Label(frame, text='Duration')
     duration_entry = ttk.Entry(frame, width=8)
-    number_label =  ttk.Label(frame, text = 'Phrase')
+    number_label =  ttk.Label(frame, text = 'Number')
     number_entry =ttk.Entry(frame, width=16)
     frequency_label.grid(row = 0, column =1)
     frequency_entry.grid(row = 1, column =1)
@@ -188,8 +188,7 @@ def get_sound_control_frame(window, mqtt_sender):
     number_entry.grid(row = 1, column = 3)
     beep_button = ttk.Button(frame, text="Beep")
     beep_button.grid(row=2, column =3)
-    beep_button['command'] = lambda: handle_beep(number_entry, matt_sender)
-
+    beep_button['command'] = lambda: handle_beep(number_entry, mqtt_sender)
 
     return frame
 
