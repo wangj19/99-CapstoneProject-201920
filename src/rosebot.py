@@ -835,6 +835,7 @@ class ToneMaker(object):
         return self._tone_maker.tone(frequency, duration)
 
     def play_tone_sequence(self, tones):
+
         """
         Starts playing a sequence of tones, where each tone is a 3-tuple:
           (frequency, duration, delay_until_next_tone_in_sequence)

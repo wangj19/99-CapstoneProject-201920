@@ -64,7 +64,7 @@ class Receiver(object):
     def beep(self,n):
         print('beep')
         for _ in range(int(n)):
-            self.robot.SoundSystem._beeper.beep().wait
+            self.robot.SoundSystem.beeper.beep().wait()
 
     def play_tone(self, frequency, duration):
         print('play tone')

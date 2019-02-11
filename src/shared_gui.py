@@ -174,8 +174,21 @@ def get_sound_control_frame(window, mqtt_sender):
     frame.grid()
     frame_label =ttk.Label(frame, text="Sound")
     frame_label.grid(row=0, column=1)
-
-
+    frequency_label = ttk.Label(frame,text="Frequencey")
+    frequency_entry = ttk.Entry(frame, width =8)
+    duration_label = ttk.Label(frame, text='Duration')
+    duration_entry = ttk.Entry(frame, width=8)
+    number_label =  ttk.Label(frame, text = 'Number')
+    number_entry =ttk.Entry(frame, width=16)
+    frequency_label.grid(row = 0, column =1)
+    frequency_entry.grid(row = 1, column =1)
+    duration_label.grid(row=0, column = 2)
+    duration_entry.grid(row=1, column = 2)
+    number_label.grid(row = 0,column = 3)
+    number_entry.grid(row = 1, column = 3)
+    beep_button = ttk.Button(frame, text="Beep")
+    beep_button.grid(row=2, column =3)
+    beep_button['command'] = lambda: handle_beep(number_entry, mqtt_sender)
 
     return frame
 
@@ -297,6 +310,10 @@ def handle_move_arm_to_position(arm_position_entry, mqtt_sender):
       :type  arm_position_entry  ttk.Entry
       :type  mqtt_sender:        com.MqttClient
     """
+
+def handle_beep(number_entry, mqtt_sender):
+    print('beep', number_entry.get())
+    mqtt_sender.send_message('beep', [number_entry.get()])
 
 
 ###############################################################################
