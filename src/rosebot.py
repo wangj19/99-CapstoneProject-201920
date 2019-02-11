@@ -151,7 +151,7 @@ class DriveSystem(object):
     def go_straight_until_color_is(self, color, speed):
         self.go(speed,speed)
         while True:
-            if self.sensor_system.color_sensor.get_color() == color
+            if self.sensor_system.color_sensor.get_color() == color:
                 self.stop()
                 break
         """
@@ -368,7 +368,7 @@ class SensorSystem(object):
         self.touch_sensor = TouchSensor(1)
         self.color_sensor = ColorSensor(3)
         self.ir_proximity_sensor = InfraredProximitySensor(4)
-        self.camera = Camera()
+        self.camera = Camera(2)
         # self.ir_beacon_sensor = InfraredBeaconSensor(4)
         # self.beacon_system =
         # self.display_system =
