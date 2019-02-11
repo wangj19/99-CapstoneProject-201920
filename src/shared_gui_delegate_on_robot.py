@@ -61,3 +61,7 @@ class Receiver(object):
         print('Go Straight for inches using encoder', int(distance), int(speed))
         self.robot.drive_system.go_straight_for_inches_using_encoder(self, int(distance), int(speed))
 
+    def quit(self):
+        print('Got quit')
+        self.is_time_to_sleep = True
+
