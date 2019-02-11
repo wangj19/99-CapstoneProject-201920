@@ -47,3 +47,16 @@ class Receiver(object):
     def move_arm_to_position(self, desired_arm_position):
         print('Move Arm To', int(desired_arm_position))
         self.robot.arm_and_claw.move_arm_to_position(int(desired_arm_position))
+
+    def go_straight_for_seconds(self, second, speed):
+        print('Go Straight for', int(second), 'seconds with speed', int(speed))
+        self.robot.drive_system.go_straight_for_seconds(int(second), int(speed))
+
+    def go_straight_inches_time(self, distance, speed):
+        print('Go Straight for inches using time', int(distance), int(speed))
+        self.robot.drive_system.go_straight_for_inches_using_time(self, int(distance), int(speed))
+
+    def go_straight_inches_encoder(self, distance, speed):
+        print('Go Straight for inches using encoder', int(distance), int(speed))
+        self.robot.drive_system.go_straight_for_inches_using_encoder(self, int(distance), int(speed))
+
