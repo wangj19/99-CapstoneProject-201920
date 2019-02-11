@@ -125,7 +125,7 @@ class DriveSystem(object):
     def go_straight_until_intensity_is_less_than(self, intensity, speed):
         self.go(speed,speed)
         while True:
-            if abs(ColorSensor.get_reflected_light_intensity())> intensity:
+            if abs(self.sensor_system.color_sensor.get_reflected_light_intensity())> intensity:
                 self.stop()
                 break
         """
@@ -159,7 +159,7 @@ class DriveSystem(object):
     def go_forward_until_distance_is_less_than(self, inches, speed):
         self.go(speed,speed)
         while True:
-            if InfraredProximitySensor.get_distance() > inches:
+            if self.sensor_system.ir_proximity_sensor.get_distance() <= inches:
                 self.stop()
                 break
         """ 
@@ -168,6 +168,11 @@ class DriveSystem(object):
         """
 
     def go_backward_until_distance_is_greater_than(self, inches, speed):
+        self.go(-speed,-speed)
+        while True:
+            if self.sensor_system.ir_proximity_sensor.get_distance() >= inches:
+                self.stop()
+                break
         """
         Goes straight at the given speed until the robot is greater than
         the given number of inches from the nearest object that it senses.
@@ -175,6 +180,16 @@ class DriveSystem(object):
         """
 
     def go_until_distance_is_within(self, delta_inches, speed):
+        x = self.sensor_system.ir_proximity_sensor.get_distance()
+        while True:
+            if x >= delta_inches:
+                self.go(speed,speed)
+            if x < delta_inches:
+                self.go(-speed,-speed)
+            else:
+                self.stop()
+                break
+
         """
         Goes forward or backward, repeated as necessary, until the robot is
         within the given delta-inches from the nearest object that it senses.
@@ -221,7 +236,7 @@ class ArmAndClaw(object):
         """
         self.touch_sensor = touch_sensor
         self.motor = Motor('A', motor_type='medium')
-        self.motor.angle = 0
+
 
     def raise_arm(self):
         """ Raises the Arm until its touch sensor is pressed. """
@@ -233,13 +248,11 @@ class ArmAndClaw(object):
 
 
     def calibrate_arm(self):
-        start = self.motor.get_position()
         self.raise_arm()
-        positiondiff = self.motor.get_position() - start
+        self.motor.reset_position()
         self.motor.turn_on(-100)
-        position = self.motor.get_position()
         while True:
-            if self.motor.get_position()-position > positiondiff:
+            if self.motor.get_position()< (-14.2*360):
                 self.motor.turn_off()
                 break
         self.motor.reset_position()
@@ -255,13 +268,19 @@ class ArmAndClaw(object):
         """
 
     def move_arm_to_position(self, desired_arm_position):
-        position = self.motor.get_position()
-        self.motor.turn_on(100)
-        while True:
-            if desired_arm_position - position < self.motor.get_position() - position:
-                self.motor.turn_off()
-                break
+        if self.motor.get_position() > desired_arm_position:
+            self.motor.turn_on(-100)
+            while True:
+                if self.motor.get_position() < desired_arm_position:
+                    self.motor.turn_off()
+                    break
 
+        if self.motor.get_position() < desired_arm_position:
+            self.motor.turn_on(100)
+            while True:
+                if self.motor.get_position() > desired_arm_position:
+                    self.motor.turn_off()
+                    break
 
 
         """
@@ -270,14 +289,15 @@ class ArmAndClaw(object):
         """
 
     def lower_arm(self):
-        position = self.motor.get_position()
-        self.move_arm_to_position()
-        diff = self.motor.get_position() - position
-        self.motor.turn_on(-100)
-        while True:
-            if self.motor.get_position() > diff:
-                self.motor.turn_off()
-                break
+        if self.motor.get_position() != 0:
+            self.motor.turn_on(-100)
+            while True:
+                if self.motor.get_position() <= 5:
+                    self.motor.turn_off()
+                    break
+
+
+
 
 
         """
