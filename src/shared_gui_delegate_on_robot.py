@@ -55,11 +55,11 @@ class Receiver(object):
 
     def go_straight_inches_time(self, distance, speed):
         print('Go Straight for inches using time', int(distance), int(speed))
-        self.robot.drive_system.go_straight_for_inches_using_time(self, int(distance), int(speed))
+        self.robot.drive_system.go_straight_for_inches_using_time(int(distance), int(speed))
 
     def go_straight_inches_encoder(self, distance, speed):
         print('Go Straight for inches using encoder', int(distance), int(speed))
-        self.robot.drive_system.go_straight_for_inches_using_encoder(self, int(distance), int(speed))
+        self.robot.drive_system.go_straight_for_inches_using_encoder(int(distance), int(speed))
 
     def beep(self,n):
         print('beep')
