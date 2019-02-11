@@ -99,7 +99,7 @@ class DriveSystem(object):
 
 
     def go_straight_for_inches_using_time(self, inches, speed):
-        self.go(speed,speed)
+        self.go(speed, speed)
         time.sleep(inches/ 10)
         self.stop()
 
