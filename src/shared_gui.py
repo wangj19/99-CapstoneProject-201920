@@ -173,22 +173,33 @@ def get_sound_control_frame(window, mqtt_sender):
     frame = ttk.Frame(window,padding=10,borderwidth=5,relief='ridge')
     frame.grid()
     frame_label =ttk.Label(frame, text="Sound")
-    frame_label.grid(row=0, column=1)
+    frame_label.grid(row=0, column=2)
     frequency_label = ttk.Label(frame,text="Frequencey")
     frequency_entry = ttk.Entry(frame, width =8)
     duration_label = ttk.Label(frame, text='Duration')
     duration_entry = ttk.Entry(frame, width=8)
     number_label =  ttk.Label(frame, text = 'Number')
-    number_entry =ttk.Entry(frame, width=16)
-    frequency_label.grid(row = 0, column =1)
-    frequency_entry.grid(row = 1, column =1)
-    duration_label.grid(row=0, column = 2)
-    duration_entry.grid(row=1, column = 2)
-    number_label.grid(row = 0,column = 3)
-    number_entry.grid(row = 1, column = 3)
+    number_entry = ttk.Entry(frame, width=6)
+    frequency_label.grid(row = 1, column =1)
+    frequency_entry.grid(row = 2, column =1)
+    duration_label.grid(row=1, column = 2)
+    duration_entry.grid(row=2, column = 2)
+    number_label.grid(row = 1,column = 3)
+    number_entry.grid(row = 2, column = 3)
     beep_button = ttk.Button(frame, text="Beep")
-    beep_button.grid(row=2, column =3)
+    beep_button.grid(row=3, column =3)
     beep_button['command'] = lambda: handle_beep(number_entry, mqtt_sender)
+    play_tone_button = ttk.Button(frame,text = "Play Tone")
+    play_tone_button.grid(row=3,column = 1)
+    play_tone_button['command'] = lambda: handle_play_tone(frequency_entry, duration_entry, mqtt_sender)
+    phrase_label = ttk.Label(frame, text = 'Phrase')
+    phrase_label.grid(row=4, column = 1)
+    phrase_entry = ttk.Entry(frame, width = 16)
+    phrase_entry.grid(row=5, column = 1)
+    phrase_button = ttk.Button(frame, text="Speak Phrase")
+    phrase_button.grid(row=4, column = 2)
+    phrase_button['command'] = lambda: handle_speak_phrase(phrase_entry, mqtt_sender)
+
 
     return frame
 
@@ -236,7 +247,6 @@ def handle_left(left_entry_box, right_entry_box, mqtt_sender):
       :type  mqtt_sender:      com.MqttClient
     """
 
-
 def handle_right(left_entry_box, right_entry_box, mqtt_sender):
     print('Go Right', int(left_entry_box.get()), -int(right_entry_box.get()))
     mqtt_sender.send_message('left',[left_entry_box.get(), right_entry_box.get()])
@@ -247,7 +257,6 @@ def handle_right(left_entry_box, right_entry_box, mqtt_sender):
       :type  right_entry_box:  ttk.Entry
       :type  mqtt_sender:      com.MqttClient
     """
-
 
 def handle_stop(mqtt_sender):
     print('Stop')
@@ -311,9 +320,18 @@ def handle_move_arm_to_position(arm_position_entry, mqtt_sender):
       :type  mqtt_sender:        com.MqttClient
     """
 
+###############################################################################
+# Sound Part
+###############################################################################
 def handle_beep(number_entry, mqtt_sender):
-    print('beep', number_entry.get())
+    print('Beep', number_entry.get())
     mqtt_sender.send_message('beep', [number_entry.get()])
+def handle_play_tone(frequency, duration, mqtt_sender):
+    print('Play Tone', frequency.get(), duration.get())
+    mqtt_sender.send_message('play_tone', [frequency.get(),duration.get()])
+def handle_speak_phrase(phrase, mqtt_sender):
+    print('Speak Phrase', phrase.get())
+    mqtt_sender.send_message('speak_phrase', [phrase.get()])
 
 
 ###############################################################################

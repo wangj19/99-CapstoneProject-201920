@@ -111,8 +111,8 @@ class DriveSystem(object):
 
     def go_straight_for_inches_using_encoder(self, inches, speed):
         self.left_motor.reset_position()
-        inches_per_degree = self.left_motor.WheelCircumference / 360
-        desired_degrees = inches // inches_per_degree
+        inches_per_degree = 1.3 * math.pi / 360
+        desired_degrees = inches / inches_per_degree
         self.go(speed,speed)
         while True:
             x = self.left_motor.get_position()
