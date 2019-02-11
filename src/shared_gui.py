@@ -312,7 +312,7 @@ def handle_move_arm_to_position(arm_position_entry, mqtt_sender):
     """
 
 def handle_beep(number_entry, mqtt_sender):
-    print('Beep', number_entry.get)
+    print('beep', number_entry.get())
     mqtt_sender.send_message('beep', [number_entry.get()])
 
 
