@@ -77,3 +77,19 @@ class Receiver(object):
         print('Got quit')
         self.is_time_to_sleep = True
 
+    def go_inten_less(self, intensity, speed):
+        print("go straight until intensity is less than", int(intensity))
+        self.robot.drive_system.go_straight_until_intensity_is_less_than(int(intensity),int(speed))
+
+    def go_inten_less(self, intensity, speed):
+        print("go straight until intensity is more than", int(intensity))
+        self.robot.drive_system.go_straight_until_intensity_is_more_than(int(intensity),int(speed))
+
+    def go_color_is(self, color, speed):
+        print('go straight until color is', str(color))
+        self.robot.drive_system.go_straight_until_color_is(str(color), int(speed))
+
+    def go_color_is(self, color, speed):
+        print('go straight until color is noy', str(color))
+        self.robot.drive_system.go_straight_until_color_is_not(str(color), int(speed))
+

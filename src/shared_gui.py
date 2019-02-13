@@ -221,17 +221,17 @@ def color_frame(window, mqtt_sender):
     color_entry = ttk.Entry(frame, width=12)
     color_entry.grid(row=2, column=3)
     go_inten_less_button = ttk.Button(frame,text='Go until intensity less')
-    go_inten_less_button.grid(row=3,column=1)
+    go_inten_less_button.grid(row=3,column=2)
     go_inten_less_button['command'] = lambda:handle_go_inten_less(intensity_entry,speed_entry,mqtt_sender)
     go_inten_more_button = ttk.Button(frame,text='Go until intensity more')
-    go_inten_more_button.grid(row=4,column=1)
+    go_inten_more_button.grid(row=4,column=2)
     go_inten_more_button['command'] = lambda:handle_go_inten_more(intensity_entry,speed_entry,mqtt_sender)
     go_color_is_button = ttk.Button(frame,text='Go until color is')
-    go_color_is_button.grid(row=5,column=1)
-    go_color_is_button['command'] = lambda:handle_go_color_is(intensity_entry,speed_entry,mqtt_sender)
+    go_color_is_button.grid(row=5,column=2)
+    go_color_is_button['command'] = lambda:handle_go_color_is(color_entry,speed_entry,mqtt_sender)
     go_color_not_button = ttk.Button(frame,text='Go until color not')
-    go_color_not_button.grid(row=6,column=1)
-    go_color_not_button['command'] = lambda:handle_go_color_not(intensity_entry,speed_entry,mqtt_sender)
+    go_color_not_button.grid(row=6,column=2)
+    go_color_not_button['command'] = lambda:handle_go_color_not(color_entry,speed_entry,mqtt_sender)
 
     return frame
 ###############################################################################
@@ -254,7 +254,6 @@ def handle_forward(left_entry_box, right_entry_box, mqtt_sender):
       :type  right_entry_box:  ttk.Entry
       :type  mqtt_sender:      com.MqttClient
     """
-
 
 def handle_backward(left_entry_box, right_entry_box, mqtt_sender):
     print('Got Backward', -int(left_entry_box.get()), -int(right_entry_box.get()))
@@ -364,6 +363,23 @@ def handle_speak_phrase(phrase, mqtt_sender):
     print('Speak Phrase', phrase.get())
     mqtt_sender.send_message('speak_phrase', [phrase.get()])
 
+
+
+###############################################################################
+# Color Part
+###############################################################################
+def handle_go_inten_less(intensity_entry,speed_entry,mqtt_sender):
+    print("Go Straight Until Intensity is less than", intensity_entry.get())
+    mqtt_sender.send_message('go_inten_less', [intensity_entry.get(),speed_entry.get()])
+def handle_go_inten_more(intensity_entry,speed_entry,mqtt_sender):
+    print("Go Straight Until Intensity is more than", intensity_entry.get())
+    mqtt_sender.send_message('go_inten_more', [intensity_entry.get(), speed_entry.get()])
+def handle_go_color_is(color_entry,speed_entry,mqtt_sender):
+    print("Go straight untile color is", color_entry.get())
+    mqtt_sender.send_message('go_color_is',[color_entry.get(), speed_entry.get()])
+def handle_go_color_not(color_entry,speed_entry,mqtt_sender):
+    print("Go straight untile color is not", color_entry.get())
+    mqtt_sender.send_message('go_color_not',[color_entry.get(), speed_entry.get()])
 
 ###############################################################################
 # Handlers for Buttons in the Control frame.
