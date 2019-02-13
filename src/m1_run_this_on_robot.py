@@ -14,7 +14,7 @@ import shared_gui_delegate_on_robot as rec
 def main():
 
     real_thing()
-    fasterbeep()
+
 
 def real_thing():
     robot = rosebot.RoseBot()
