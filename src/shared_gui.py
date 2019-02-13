@@ -17,6 +17,7 @@
 import tkinter
 from tkinter import ttk
 import time
+import rosebot
 
 
 def get_teleoperation_frame(window, mqtt_sender):
@@ -402,3 +403,6 @@ def handle_exit(mqtt_sender):
     print('exit')
     handle_quit(mqtt_sender)
     exit()
+
+
+
