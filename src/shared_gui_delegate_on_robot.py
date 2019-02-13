@@ -81,7 +81,7 @@ class Receiver(object):
         print("go straight until intensity is less than", int(intensity))
         self.robot.drive_system.go_straight_until_intensity_is_less_than(int(intensity),int(speed))
 
-    def go_inten_less(self, intensity, speed):
+    def go_inten_more(self, intensity, speed):
         print("go straight until intensity is more than", int(intensity))
         self.robot.drive_system.go_straight_until_intensity_is_more_than(int(intensity),int(speed))
 
@@ -89,7 +89,19 @@ class Receiver(object):
         print('go straight until color is', str(color))
         self.robot.drive_system.go_straight_until_color_is(str(color), int(speed))
 
-    def go_color_is(self, color, speed):
-        print('go straight until color is noy', str(color))
+    def go_color_not(self, color, speed):
+        print('go straight until color is not', str(color))
         self.robot.drive_system.go_straight_until_color_is_not(str(color), int(speed))
+
+    def go_for_less(self, inches, speed):
+        print('go forward until distance is less than', int(inches))
+        self.robot.drive_system.go_forward_until_distance_is_less_than(int(inches), int(speed))
+
+    def go_back_more(self, inches, speed):
+        print('go backward until distance is more than', int(inches))
+        self.robot.drive_system.go_backward_until_distance_is_more_than(int(inches), int(speed))
+
+    def go_until_within(self, delta, inches, speed):
+        print('go until distance is within', int(delta), int(inches))
+        self.robot.drive_system.go_until_distance_is_within(int(delta), int(inches), int(speed))
 

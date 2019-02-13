@@ -221,18 +221,48 @@ def color_frame(window, mqtt_sender):
     color_label.grid(row=1, column=3)
     color_entry = ttk.Entry(frame, width=12)
     color_entry.grid(row=2, column=3)
-    go_inten_less_button = ttk.Button(frame,text='Go until intensity less')
+    go_inten_less_button = ttk.Button(frame,text='Go straight until intensity less')
     go_inten_less_button.grid(row=3,column=2)
     go_inten_less_button['command'] = lambda:handle_go_inten_less(intensity_entry,speed_entry,mqtt_sender)
-    go_inten_more_button = ttk.Button(frame,text='Go until intensity more')
+    go_inten_more_button = ttk.Button(frame,text='Go straight until intensity more')
     go_inten_more_button.grid(row=4,column=2)
     go_inten_more_button['command'] = lambda:handle_go_inten_more(intensity_entry,speed_entry,mqtt_sender)
-    go_color_is_button = ttk.Button(frame,text='Go until color is')
+    go_color_is_button = ttk.Button(frame,text='Go straight until color is')
     go_color_is_button.grid(row=5,column=2)
     go_color_is_button['command'] = lambda:handle_go_color_is(color_entry,speed_entry,mqtt_sender)
-    go_color_not_button = ttk.Button(frame,text='Go until color not')
+    go_color_not_button = ttk.Button(frame,text='Go straight until color not')
     go_color_not_button.grid(row=6,column=2)
     go_color_not_button['command'] = lambda:handle_go_color_not(color_entry,speed_entry,mqtt_sender)
+
+    return frame
+
+def distance_frame(window, mqtt_sender):
+    frame = ttk.Frame(window, padding = 10, borderwidth = 5, relief='ridge')
+    frame.grid()
+    frame_label = ttk.Label(frame, text='Distance oontrol')
+    frame_label.grid(row=0, column = 2)
+    speed_label = ttk.Label(frame, text='Speed')
+    speed_label.grid(row=1, column = 1)
+    speed_entry = ttk.Entry(frame,width = 8)
+    speed_entry.grid(row=2, column = 1)
+    speed_entry.insert(0,'100')
+    inches_label = ttk.Label(frame, text = 'Inches')
+    inches_label.grid(row=1, column = 2)
+    inches_entry = ttk.Entry(frame, width = 8)
+    inches_entry.grid(row=2, column = 2)
+    delta_label = ttk.Label(frame, text='Color')
+    delta_label.grid(row=1, column=3)
+    delta_entry = ttk.Entry(frame, width=8)
+    delta_entry.grid(row=2, column=3)
+    go_for_less_button = ttk.Button(frame,text='Go forward until distance less')
+    go_for_less_button.grid(row=3,column=2)
+    go_for_less_button['command'] = lambda:handle_go_for_less(inches_entry,speed_entry,mqtt_sender)
+    go_back_more_button = ttk.Button(frame,text='Go backward until distance more')
+    go_back_more_button.grid(row=4,column=2)
+    go_back_more_button['command'] = lambda:handle_go_back_more(inches_entry,speed_entry,mqtt_sender)
+    go_until_within_button = ttk.Button(frame,text='Go until distance within')
+    go_until_within_button.grid(row=5,column=2)
+    go_until_within_button['command'] = lambda:handle_go_until_within(delta_entry,inches_entry, speed_entry,mqtt_sender)
 
     return frame
 ###############################################################################
@@ -382,6 +412,18 @@ def handle_go_color_not(color_entry,speed_entry,mqtt_sender):
     print("Go straight untile color is not", color_entry.get())
     mqtt_sender.send_message('go_color_not',[color_entry.get(), speed_entry.get()])
 
+################################################################################
+# Distance Part
+################################################################################
+def handle_go_for_less(inches_entry,speed_entry,mqtt_sender):
+    print("Go forward Until distance is less than", inches_entry.get())
+    mqtt_sender.send_message('go_for_less', [inches_entry.get(),speed_entry.get()])
+def handle_go_back_more(inches_entry,speed_entry,mqtt_sender):
+    print("Go forward Until distance is less than", inches_entry.get())
+    mqtt_sender.send_message('go_back_more', [inches_entry.get(),speed_entry.get()])
+def handle_go_until_within(delta_entry, inches_entry, speed_entry,mqtt_sender):
+    print('Go until distance within', inches_entry.get(),delta_entry.get())
+    mqtt_sender.send_message('go_until_within',[delta_entry.get(),inches_entry.get(),speed_entry.get()])
 ###############################################################################
 # Handlers for Buttons in the Control frame.
 ###############################################################################

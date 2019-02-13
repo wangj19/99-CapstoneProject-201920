@@ -214,7 +214,7 @@ class DriveSystem(object):
     def go_until_distance_is_within(self, delta, inches, speed):
         if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches+delta:
             self.go(speed, speed)
-        if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches-delta:
+        elif self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches-delta:
             self.go(-speed,-speed)
         else:
             self.stop()
