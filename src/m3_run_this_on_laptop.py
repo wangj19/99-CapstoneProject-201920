@@ -42,6 +42,7 @@ def grid_frames(teleop_frame, arm_frame, control_frame,sound_frame,color_frame,d
     camera_frame.grid(row=1,column=1)
 
 
+
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
