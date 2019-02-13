@@ -64,14 +64,14 @@ class Receiver(object):
     def beep(self,n):
         print('beep')
         for _ in range(int(n)):
-            self.robot.SoundSystem.beeper.beep().wait()
+            self.robot.sound_system.beeper.beep().wait()
 
     def play_tone(self, frequency, duration):
         print('play tone')
-        self.robot.SoundSystem.tone_maker.play_tone(int(frequency, int(duration)))
+        self.robot.sound_system.tone_maker.play_tone(int(frequency), int(duration))
 
     def speak_phrase(self, phrase):
-        self.robot.SoundSystem.speech_maker.speak(str(phrase))
+        self.robot.sound_system.speech_maker.speak(str(phrase))
 
     def quit(self):
         print('Got quit')
