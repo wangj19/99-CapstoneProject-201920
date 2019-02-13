@@ -168,6 +168,12 @@ class DriveSystem(object):
         """
 
     def go_straight_until_color_is_not(self, color, speed):
+        self.go(speed,speed)
+        while True:
+            if self.sensor_system.color_sensor.get_color != color:
+                self.stop()
+                break
+
         """
         Goes straight at the given speed until the color returned
         by the color_sensor is NOT equal to the given color.
@@ -202,6 +208,12 @@ class DriveSystem(object):
         """
 
     def go_until_distance_is_within(self, delta, inches, speed):
+        if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches+delta:
+            self.go(speed, speed)
+        if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches-delta:
+            self.go(-speed,-speed)
+        else:
+            self.stop()
         """
         Goes forward or backward, repeated as necessary, until the robot is
         within the given delta of the given inches from the nearest object
@@ -368,7 +380,7 @@ class SensorSystem(object):
         self.touch_sensor = TouchSensor(1)
         self.color_sensor = ColorSensor(3)
         self.ir_proximity_sensor = InfraredProximitySensor(4)
-        self.camera = Camera(2)
+        self.camera = Camera()
         # self.ir_beacon_sensor = InfraredBeaconSensor(4)
         # self.beacon_system =
         # self.display_system =

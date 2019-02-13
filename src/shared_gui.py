@@ -200,8 +200,9 @@ def get_sound_control_frame(window, mqtt_sender):
     phrase_button.grid(row=4, column = 2)
     phrase_button['command'] = lambda: handle_speak_phrase(phrase_entry, mqtt_sender)
 
-
     return frame
+
+
 
 ###############################################################################
 ###############################################################################
@@ -328,7 +329,7 @@ def handle_beep(number_entry, mqtt_sender):
     mqtt_sender.send_message('beep', [number_entry.get()])
 def handle_play_tone(frequency, duration, mqtt_sender):
     print('Play Tone', frequency.get(), duration.get())
-    mqtt_sender.send_message('play_tone', [frequency.get(),duration.get()])
+    mqtt_sender.send_message('play_tone', [frequency.get(), duration.get()])
 def handle_speak_phrase(phrase, mqtt_sender):
     print('Speak Phrase', phrase.get())
     mqtt_sender.send_message('speak_phrase', [phrase.get()])
