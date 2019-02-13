@@ -27,7 +27,6 @@ def real_thing():
         time.sleep(0.01)
         if receiver.is_time_to_stop:
             break
-            pass
 
 def get_closer_beep():
     robot = rosebot.RoseBot()
@@ -47,5 +46,5 @@ def get_closer_beep():
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
-main()
 get_closer_beep()
+main()
