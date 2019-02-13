@@ -99,7 +99,7 @@ class Receiver(object):
 
     def go_back_more(self, inches, speed):
         print('go backward until distance is more than', int(inches))
-        self.robot.drive_system.go_backward_until_distance_is_more_than(int(inches), int(speed))
+        self.robot.drive_system.go_backward_until_distance_is_greater_than(int(inches), int(speed))
 
     def go_until_within(self, delta, inches, speed):
         print('go until distance is within', int(delta), int(inches))
