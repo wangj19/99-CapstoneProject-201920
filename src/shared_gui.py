@@ -382,7 +382,7 @@ def handle_calibrate_arm(mqtt_sender):
     """
     Tells the robot to calibrate its Arm, that is, first to raise its Arm
     until its touch sensor is pressed, then to lower its Arm until it is
-    all the way down, and then to mark taht position as position 0.
+    all the way down, and then to mark taht position as pofsition 0.
       :type  mqtt_sender:  com.MqttClient
     """
 def handle_move_arm_to_position(arm_position_entry, mqtt_sender):
