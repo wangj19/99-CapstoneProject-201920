@@ -32,9 +32,7 @@ def real_thing():
             break
 
 
-def close_led():
-    robot = rosebot.RoseBot
-    distance = robot.sensor_system.ir_proximity_sensor.get_distance()
+
 
 
 

@@ -130,9 +130,9 @@ class DriveSystem(object):
     # -------------------------------------------------------------------------
 
     def go_straight_until_intensity_is_less_than(self, intensity, speed):
-        self.go(speed,speed)
+        self.go(speed, speed)
         while True:
-            if abs(self.sensor_system.color_sensor.get_reflected_light_intensity())> intensity:
+            if abs(self.sensor_system.color_sensor.get_reflected_light_intensity()) > intensity:
                 self.stop()
                 break
         """
@@ -274,9 +274,8 @@ class DriveSystem(object):
 
     def display_camera_data(self):
 
-        print(self.sensor_system.camera.get_biggest_blob().height)
+
         print(self.sensor_system.camera.get_biggest_blob().center)
-        print(self.sensor_system.camera.get_biggest_blob().width)
         """
         Prints on the Console the Blob data of the Blob that the camera sees
         (if any).
@@ -417,7 +416,7 @@ class SensorSystem(object):
         self.color_sensor = ColorSensor(3)
         self.ir_proximity_sensor = InfraredProximitySensor(4)
         self.camera = Camera()
-        self.ir_beacon_sensor = InfraredBeaconSensor(4)
+        # self.ir_beacon_sensor = InfraredBeaconSensor(4)
         # self.beacon_system =
         # self.display_system =
 

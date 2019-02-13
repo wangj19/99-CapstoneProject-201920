@@ -83,7 +83,7 @@ class Receiver(object):
 
     def go_inten_more(self, intensity, speed):
         print("go straight until intensity is more than", int(intensity))
-        self.robot.drive_system.go_straight_until_intensity_is_more_than(int(intensity),int(speed))
+        self.robot.drive_system.go_straight_until_intensity_is_greater_than(int(intensity),int(speed))
 
     def go_color_is(self, color, speed):
         print('go straight until color is', str(color))
