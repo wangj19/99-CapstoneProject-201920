@@ -202,8 +202,38 @@ def get_sound_control_frame(window, mqtt_sender):
 
     return frame
 
+def color_frame(window, mqtt_sender):
+    frame = ttk.Frame(window, padding = 10, borderwidth = 5, relief='ridge')
+    frame.grid()
+    frame_label = ttk.Label(frame, text='Color oontrol')
+    frame_label.grid(row=0, column = 2)
+    speed_label = ttk.Label(frame, text='Speed')
+    speed_label.grid(row=1, column = 1)
+    speed_entry = ttk.Entry(frame,width = 8)
+    speed_entry.grid(row=2, column = 1)
+    speed_entry.insert(0,'100')
+    intensity_label = ttk.Label(frame, text = 'Intensity')
+    intensity_label.grid(row=1, column = 2)
+    intensity_entry = ttk.Entry(frame, width = 8)
+    intensity_entry.grid(row=2, column = 2)
+    color_label = ttk.Label(frame, text='Color')
+    color_label.grid(row=1, column=3)
+    color_entry = ttk.Entry(frame, width=12)
+    color_entry.grid(row=2, column=3)
+    go_inten_less_button = ttk.Button(frame,text='Go until intensity less')
+    go_inten_less_button.grid(row=3,column=1)
+    go_inten_less_button['command'] = lambda:handle_go_inten_less(intensity_entry,speed_entry,mqtt_sender)
+    go_inten_more_button = ttk.Button(frame,text='Go until intensity more')
+    go_inten_more_button.grid(row=4,column=1)
+    go_inten_more_button['command'] = lambda:handle_go_inten_more(intensity_entry,speed_entry,mqtt_sender)
+    go_color_is_button = ttk.Button(frame,text='Go until color is')
+    go_color_is_button.grid(row=5,column=1)
+    go_color_is_button['command'] = lambda:handle_go_color_is(intensity_entry,speed_entry,mqtt_sender)
+    go_color_not_button = ttk.Button(frame,text='Go until color not')
+    go_color_not_button.grid(row=6,column=1)
+    go_color_not_button['command'] = lambda:handle_go_color_not(intensity_entry,speed_entry,mqtt_sender)
 
-
+    return frame
 ###############################################################################
 ###############################################################################
 # The following specifies, for each Button,
