@@ -116,7 +116,7 @@ class DriveSystem(object):
         self.go(speed,speed)
         while True:
             x = self.left_motor.get_position()
-            if abs(x)>= desired_degrees:
+            if abs(x) >= desired_degrees:
                 self.stop()
                 break
         """
@@ -230,18 +230,34 @@ class DriveSystem(object):
     # -------------------------------------------------------------------------
 
     def spin_clockwise_until_beacon_heading_is_nonnegative(self, speed):
+        self.go(speed, -speed)
+        while True:
+            if self.sensor_system.ir_beacon_sensor.get_heading_to_beacon() >= 0:
+                self.stop()
+                break
         """
         Spins clockwise at the given speed until the heading to the Beacon
         is nonnegative.  Requires that the user turn on the Beacon.
         """
 
     def spin_counterclockwise_until_beacon_heading_is_nonpositive(self, speed):
+        self.go(-speed, speed)
+        while True:
+            if self.sensor_system.ir_beacon_sensor.get_heading_to_beacon() >= 0:
+                self.stop()
+                break
         """
         Spins counter-clockwise at the given speed until the heading to the Beacon
         is nonnegative.  Requires that the user turn on the Beacon.
         """
 
     def go_straight_to_the_beacon(self, inches, speed):
+        self.go(speed, speed)
+        while True:
+            if self.sensor_system.ir_beacon_sensor.get_distance_to_beacon() < inches:
+                self.stop()
+                break
+
         """
         Goes forward at the given speed until the robot is less than the
         given number of inches from the Beacon.
@@ -253,12 +269,22 @@ class DriveSystem(object):
         # -------------------------------------------------------------------------
 
     def display_camera_data(self):
+
+        print(self.sensor_system.camera.get_biggest_blob().height)
+        print(self.sensor_system.camera.get_biggest_blob().center)
+        print(self.sensor_system.camera.get_biggest_blob().width)
         """
         Prints on the Console the Blob data of the Blob that the camera sees
         (if any).
         """
 
     def spin_clockwise_until_sees_object(self, speed, area):
+        self.go(speed, -speed)
+        while True:
+            if self.sensor_system.camera.get_biggest_blob().get_area() >= area:
+                self.stop()
+                break
+
         """
         Spins clockwise at the given speed until the camera sees an object
         of the trained color whose area is at least the given area.
@@ -266,6 +292,12 @@ class DriveSystem(object):
         """
 
     def spin_counterclockwise_until_sees_object(self, speed, area):
+        self.go(-speed, speed)
+        while True:
+            if self.sensor_system.camera.get_biggest_blob().get_area() >= area:
+                self.stop()
+                break
+
         """
         Spins counter-clockwise at the given speed until the camera sees an object
         of the trained color whose area is at least the given area.
@@ -381,7 +413,7 @@ class SensorSystem(object):
         self.color_sensor = ColorSensor(3)
         self.ir_proximity_sensor = InfraredProximitySensor(4)
         self.camera = Camera()
-        # self.ir_beacon_sensor = InfraredBeaconSensor(4)
+        self.ir_beacon_sensor = InfraredBeaconSensor(4)
         # self.beacon_system =
         # self.display_system =
 

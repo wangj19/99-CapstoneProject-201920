@@ -33,7 +33,7 @@ def get_closer_tone(frequency):
     print(distance)
 
     speakerr = robot.sound_system.tone_maker.play_tone_sequence(frequency / distance, 100)
-    robot.drive_system.go(200,150)
+    robot.drive_system.go(200, 150)
     while True:
         speakerr
 
