@@ -28,6 +28,22 @@ def real_thing():
         if receiver.is_time_to_stop:
             break
 
+def fasterbeep():
+    robot = rosebot.RoseBot()
+    distance = robot.sensor_system.ir_proximity_sensor.get_distance()
+    print(distance)
+    frequency = 400
+    for k in range(5000/distance, 10):
+        duration = 1000 - k
+        delay = 1000-k
+        tones = [frequency, duration, delay]
+        robot.sound_system.tone_maker.play_tone_sequence(tones)
+
+
+
+
+
+
 
 
 
