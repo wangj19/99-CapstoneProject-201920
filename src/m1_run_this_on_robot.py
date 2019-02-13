@@ -38,6 +38,7 @@ def fasterbeep():
         delay = 1000-k
         tones = [frequency, duration, delay]
         robot.sound_system.tone_maker.play_tone_sequence(tones)
+         
 
 
 
