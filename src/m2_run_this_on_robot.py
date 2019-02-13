@@ -28,13 +28,11 @@ def real_thing():
         if receiver.is_time_to_stop:
             break
 
-def get_closer_tone(frequency):
+def get_closer_tone():
     robot = rosebot.RoseBot()
     distance = robot.sensor_system.ir_proximity_sensor.get_distance()
     print(distance)
-    speakerr = robot.sound_system.tone_maker.play_tone_sequence(frequency / distance /2, 50)
-    for k in range(2000):
-        frequency = frequency + k/5
+    speakerr = robot.sound_system.tone_maker.play_tone_sequence(100/distance, 50)
 
     robot.drive_system.go(50,50)
 
@@ -44,7 +42,7 @@ def get_closer_tone(frequency):
         else:
             return None
 
-
+get_closer_tone()
 
 
 
