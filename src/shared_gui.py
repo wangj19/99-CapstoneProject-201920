@@ -98,7 +98,6 @@ def get_teleoperation_frame(window, mqtt_sender):
 
     return frame
 
-
 def get_arm_frame(window, mqtt_sender):
     """
     Constructs and returns a frame on the given window, where the frame
@@ -142,7 +141,6 @@ def get_arm_frame(window, mqtt_sender):
         position_entry, mqtt_sender)
 
     return frame
-
 
 def get_control_frame(window, mqtt_sender):
     """
@@ -265,6 +263,28 @@ def distance_frame(window, mqtt_sender):
     go_until_within_button['command'] = lambda:handle_go_until_within(delta_entry,inches_entry, speed_entry,mqtt_sender)
 
     return frame
+
+def camera_frame(window, mqtt_sender):
+    frame = ttk.Frame(window, padding=10, borderwidth=5, relief='ridge')
+    frame.grid()
+    frame_label = ttk.Label(frame, text='Camera oontrol')
+    frame_label.grid(row=0, column = 2)
+    speed_label = ttk.Label(frame, text='Speed')
+    speed_label.grid(row=1, column=1)
+    speed_entry = ttk.Entry(frame, width=8)
+    speed_entry.grid(row=2, column=1)
+    speed_entry.insert(0, '100')
+    area_label = ttk.Label(frame, text = 'Area')
+    area_label.grid(row=1, column = 2)
+    area_entry = ttk.Entry(frame, width = 8)
+    area_entry.grid(row=2, column = 2)
+    clock_button = ttk.Button(frame, text='Clockwise until area')
+    clock_button.grid(row=3, column = 1)
+    clock_button['command'] = lambda: handle_clockwise(speed_entry,area_entry,mqtt_sender)
+    counterclock_button = ttk.Button(frame, text='Counterclockwise until area')
+    counterclock_button.grid(row=3, column=2)
+    counterclock_button['command'] = lambda: handle_counterclockwise(speed_entry, area_entry, mqtt_sender)
+    return frame
 ###############################################################################
 ###############################################################################
 # The following specifies, for each Button,
@@ -349,8 +369,6 @@ def handle_raise_arm(mqtt_sender):
     Tells the robot to raise its Arm until its touch sensor is pressed.
       :type  mqtt_sender:  com.MqttClient
     """
-
-
 def handle_lower_arm(mqtt_sender):
     print('Lower Arm')
     mqtt_sender.send_message('lower_arm')
@@ -358,8 +376,6 @@ def handle_lower_arm(mqtt_sender):
     Tells the robot to lower its Arm until it is all the way down.
       :type  mqtt_sender:  com.MqttClient
     """
-
-
 def handle_calibrate_arm(mqtt_sender):
     print('Calibrate Arm')
     mqtt_sender.send_message('calibrate_arm')
@@ -369,8 +385,6 @@ def handle_calibrate_arm(mqtt_sender):
     all the way down, and then to mark taht position as position 0.
       :type  mqtt_sender:  com.MqttClient
     """
-
-
 def handle_move_arm_to_position(arm_position_entry, mqtt_sender):
     print('Move Arm To', arm_position_entry.get())
     mqtt_sender.send_message('move_arm_to_position', [arm_position_entry.get()])
@@ -393,8 +407,6 @@ def handle_play_tone(frequency, duration, mqtt_sender):
 def handle_speak_phrase(phrase, mqtt_sender):
     print('Speak Phrase', phrase.get())
     mqtt_sender.send_message('speak_phrase', [phrase.get()])
-
-
 
 ###############################################################################
 # Color Part
@@ -424,6 +436,16 @@ def handle_go_back_more(inches_entry,speed_entry,mqtt_sender):
 def handle_go_until_within(delta_entry, inches_entry, speed_entry,mqtt_sender):
     print('Go until distance within', inches_entry.get(),delta_entry.get())
     mqtt_sender.send_message('go_until_within',[delta_entry.get(),inches_entry.get(),speed_entry.get()])
+
+################################################################################
+# Camera Part
+##############################################################################
+def handle_clockwise(speed_entry, area_entry, mqtt_sender):
+    print('Clockwise', area_entry.get())
+    mqtt_sender.send_message('clockwise_area',[area_entry.get(),speed_entry.get()])
+def handle_counterclockwise(speed_entry, area_entry, mqtt_sender):
+    print('Counterclockwise', area_entry.get())
+    mqtt_sender.send_message('counterclockwise_area',[area_entry.get(),speed_entry.get()])
 ###############################################################################
 # Handlers for Buttons in the Control frame.
 ###############################################################################
@@ -434,7 +456,6 @@ def handle_quit(mqtt_sender):
     """
     print('quit')
     mqtt_sender.send_message('quit')
-
 
 def handle_exit(mqtt_sender):
     """

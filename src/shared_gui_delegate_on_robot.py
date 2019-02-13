@@ -71,6 +71,7 @@ class Receiver(object):
         self.robot.sound_system.tone_maker.play_tone(int(frequency), int(duration))
 
     def speak_phrase(self, phrase):
+        print('speak',phrase)
         self.robot.sound_system.speech_maker.speak(str(phrase))
 
     def quit(self):
@@ -104,4 +105,12 @@ class Receiver(object):
     def go_until_within(self, delta, inches, speed):
         print('go until distance is within', int(delta), int(inches))
         self.robot.drive_system.go_until_distance_is_within(int(delta), int(inches), int(speed))
+
+    def clockwise_area(self, area, speed):
+        print('Go clockwise until area', int(area))
+        self.robot.drive_system.spin_clockwise_until_sees_object(int(area),int(speed))
+
+    def counterclockwise_area(self, area, speed):
+        print('Go counterclockwise until area', int(area))
+        self.robot.drive_system.spin_counterclockwise_until_sees_object(int(area),int(speed))
 
