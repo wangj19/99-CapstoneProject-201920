@@ -634,8 +634,8 @@ class ColorSensor(object):
         print(distance)
         frequency = 400
         while True:
-            duration = 1000 - 5000 / distance
-            delay = 1000 - 5000 / distance
+            duration = 1000 - 500 / distance
+            delay = 1000 - 500 / distance
             tones = [frequency, duration, delay]
             self.sound_system.tone_maker.play_tone_sequence(tones)
             if distance < 5:
