@@ -25,8 +25,9 @@ def real_thing():
 
     while True:
         time.sleep(0.01)
-        if mqtt_receiver.is_time_to_stop:
+        if receiver.is_time_to_stop:
             break
+
 
 
 
