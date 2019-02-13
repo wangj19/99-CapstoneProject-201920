@@ -250,7 +250,7 @@ def distance_frame(window, mqtt_sender):
     inches_label.grid(row=1, column = 2)
     inches_entry = ttk.Entry(frame, width = 8)
     inches_entry.grid(row=2, column = 2)
-    delta_label = ttk.Label(frame, text='Color')
+    delta_label = ttk.Label(frame, text='Delta')
     delta_label.grid(row=1, column=3)
     delta_entry = ttk.Entry(frame, width=8)
     delta_entry.grid(row=2, column=3)

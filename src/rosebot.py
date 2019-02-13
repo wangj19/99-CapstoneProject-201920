@@ -191,7 +191,7 @@ class DriveSystem(object):
     def go_forward_until_distance_is_less_than(self, inches, speed):
         self.go(speed,speed)
         while True:
-            if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() <= inches:
+            if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches:
                 self.stop()
                 break
         """ 
@@ -202,7 +202,7 @@ class DriveSystem(object):
     def go_backward_until_distance_is_greater_than(self, inches, speed):
         self.go(-speed,-speed)
         while True:
-            if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() >= inches:
+            if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches:
                 self.stop()
                 break
         """
@@ -212,12 +212,14 @@ class DriveSystem(object):
         """
 
     def go_until_distance_is_within(self, delta, inches, speed):
-        if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches+delta:
-            self.go(speed, speed)
-        elif self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches-delta:
-            self.go(-speed,-speed)
-        else:
-            self.stop()
+        while True:
+            if self.sensor_system.ir_proximity_sensor.get_distance_in_inches() > inches+delta:
+                self.go(speed, speed)
+            elif self.sensor_system.ir_proximity_sensor.get_distance_in_inches() < inches-delta:
+                self.go(-speed,-speed)
+            else:
+                self.stop()
+                break
         """
         Goes forward or backward, repeated as necessary, until the robot is
         within the given delta of the given inches from the nearest object
