@@ -14,7 +14,7 @@ import shared_gui_delegate_on_robot as rec
 def main():
 
     real_thing()
-
+    fasterbeep()
 
 def real_thing():
     robot = rosebot.RoseBot()
@@ -30,15 +30,19 @@ def real_thing():
 
 def fasterbeep():
     robot = rosebot.RoseBot()
-    distance = robot.sensor_system.ir_proximity_sensor.get_distance()
+    robot.drive_system.go(50,50)
+    distance = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
     print(distance)
     frequency = 400
-    for k in range(5000/distance, 10):
-        duration = 1000 - k
-        delay = 1000-k
+    while True:
+        duration = 1000 - 500/distance
+        delay = 1000-500/distance
         tones = [frequency, duration, delay]
         robot.sound_system.tone_maker.play_tone_sequence(tones)
-         
+        if distance < 5:
+            robot.drive_system.stop()
+            break
+
 
 
 

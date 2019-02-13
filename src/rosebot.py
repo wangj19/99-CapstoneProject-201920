@@ -628,6 +628,20 @@ class ColorSensor(object):
             red, green, blue = color_sensor.get_raw_color
         """
 
+    def fasterbeep(self):
+        self.go(50, 50)
+        distance = self.sensor_system.ir_proximity_sensor.get_distance_in_inches()
+        print(distance)
+        frequency = 400
+        while True:
+            duration = 1000 - 5000 / distance
+            delay = 1000 - 5000 / distance
+            tones = [frequency, duration, delay]
+            self.sound_system.tone_maker.play_tone_sequence(tones)
+            if distance < 5:
+                self.stop()
+                break
+
 
 ###############################################################################
 # InfraredProximitySensor
