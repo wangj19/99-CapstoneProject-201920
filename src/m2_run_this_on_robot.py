@@ -31,6 +31,7 @@ def get_closer_tone(frequency):
     robot = rosebot.RoseBot()
     distance = robot.sensor_system.ir_proximity_sensor.get_distance()
     print(distance)
+
     speakerr = robot.sound_system.tone_maker.play_tone_sequence(frequency / distance, 100)
     robot.drive_system.go(200,150)
     while True:
