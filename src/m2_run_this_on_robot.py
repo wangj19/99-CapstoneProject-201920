@@ -38,7 +38,7 @@ def get_closer_tone():
 
 
     while True:
-        if distance > 1:
+        if distance > 40:
 
             robot.sound_system.tone_maker.play_tone(2000 / distance, 50)
         else:
