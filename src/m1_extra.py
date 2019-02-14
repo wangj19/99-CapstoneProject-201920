@@ -14,3 +14,8 @@ def fasterbeep():
         if distance < 40:
             robot.drive_system.stop()
             break
+
+def main():
+    fasterbeep()
+
+main()

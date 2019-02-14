@@ -12,7 +12,7 @@ import shared_gui_delegate_on_robot as rec
 
 
 def main():
-    get_closer_tone()
+
 
     """
     This code, which must run on the EV3 ROBOT:
