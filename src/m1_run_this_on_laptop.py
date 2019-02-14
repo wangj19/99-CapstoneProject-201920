@@ -25,6 +25,9 @@ def main():
     fasterbeep_button = ttk.Button(main_frame, text='Faster beep')
     fasterbeep_button. grid(row = 2, column=1)
     fasterbeep_button['command'] = lambda: handle_fasterbeep(mqtt_sender)
+    feature_10_button = ttk.Button(main_frame, text='Feature 10')
+    feature_10_button. grid(row = 2, column=2)
+    feature_10_button['command'] = lambda: handle_feature_10(mqtt_sender)
     root.mainloop()
 def get_shared_frames(main_frame, mqtt_sender):
     teleop_frame = shared_gui.get_teleoperation_frame(main_frame,mqtt_sender)
@@ -47,6 +50,9 @@ def grid_frames(teleop_frame, arm_frame, control_frame,sound_frame,color_frame,d
 def handle_fasterbeep(mqtt_sender):
     print('fasterbeep')
     mqtt_sender.send_message('fasterbeep')
+def handle_feature_10(mqtt_sender):
+    print('feature 10')
+    mqtt_sender.send_message('feature_10')
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
