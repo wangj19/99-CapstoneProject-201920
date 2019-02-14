@@ -125,3 +125,7 @@ class Receiver(object):
         print('Get closer and tone more frequency')
         m2_run_this_on_robot.get_closer_tone()
 
+    def led(self):
+        print('caonima')
+        m3_run_this_on_robot.led()
+
