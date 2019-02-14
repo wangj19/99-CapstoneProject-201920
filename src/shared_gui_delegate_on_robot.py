@@ -129,7 +129,4 @@ class Receiver(object):
         print('caonima')
         m3_run_this_on_robot.led()
 
-    def handle_feature_10(self):
-        print('feature 10')
-        m1_run_this_on_robot.feature_10()
 
