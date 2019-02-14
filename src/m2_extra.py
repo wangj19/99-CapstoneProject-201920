@@ -1,10 +1,10 @@
 
-import shared_gui_delegate_on_robot
 import rosebot
-import mqtt_remote_method_calls as com
-import time
-import shared_gui_delegate_on_robot as rec
-import m2_run_this_on_robot
+
+
+
+def main():
+    get_closer_tone()
 
 
 def get_closer_tone():
@@ -19,4 +19,5 @@ def get_closer_tone():
             robot.sound_system.tone_maker.play_tone(0, 0).wait()
             break
 
-get_closer_tone()
+
+main()
