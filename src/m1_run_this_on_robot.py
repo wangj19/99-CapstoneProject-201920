@@ -37,10 +37,10 @@ def fasterbeep():
     print(distance)
     while True:
         distance = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
-        delay = 1000-1010/distance
+        delay = 10*distance
         robot.sound_system.beeper.beep()
         time.sleep(delay)
-        if distance < 1:
+        if distance < 40:
             robot.drive_system.stop()
             break
 
