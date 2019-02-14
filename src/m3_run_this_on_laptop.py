@@ -22,9 +22,7 @@ def main():
     main_frame.grid()
     teleop_frame, arm_frame,control_frame, sound_frame, color_frame, distance_frame, camera_frame = get_shared_frames(main_frame, mqtt_sender)
     grid_frames(teleop_frame, arm_frame, control_frame, sound_frame,color_frame, distance_frame, camera_frame)
-    led_button = ttk.Button(main_frame, text = 'led')
-    led_button.grid(row =2, column = 2)
-    led_button['command'] = lambda: handle_led(mqtt_sender)
+
     root.mainloop()
 def get_shared_frames(main_frame, mqtt_sender):
     teleop_frame = shared_gui.get_teleoperation_frame(main_frame,mqtt_sender)
@@ -43,11 +41,6 @@ def grid_frames(teleop_frame, arm_frame, control_frame,sound_frame,color_frame,d
     color_frame.grid(row=4, column=0)
     distance_frame.grid(row=0,column=1)
     camera_frame.grid(row=1,column=1)
-
-def handle_led(mqtt):
-    print("caonima")
-    mqtt.send_message('led')
-
 
 
 
