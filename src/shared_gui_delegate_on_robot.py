@@ -7,7 +7,7 @@
   Winter term, 2018-2019.
 """
 import m1_extra
-import m2_run_this_on_robot
+import m2_extra
 import m3_extra
 
 class Receiver(object):

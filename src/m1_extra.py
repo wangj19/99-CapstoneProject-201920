@@ -1,6 +1,5 @@
 import rosebot
 import time
-import m1_run_this_on_robot
 
 def fasterbeep():
     robot = rosebot.RoseBot()

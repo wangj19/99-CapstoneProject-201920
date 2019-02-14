@@ -16,7 +16,6 @@ def main():
 
 
 
-
 def real_thing():
     robot = rosebot.RoseBot()
     receiver = rec.Receiver(robot)
@@ -30,7 +29,7 @@ def real_thing():
             break
 
 
-
+main()
 
 
 
