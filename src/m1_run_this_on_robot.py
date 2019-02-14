@@ -16,6 +16,7 @@ def main():
     real_thing()
 
 
+
 def real_thing():
     robot = rosebot.RoseBot()
     receiver = rec.Receiver(robot)
