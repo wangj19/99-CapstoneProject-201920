@@ -6,7 +6,7 @@
     and Jiadi. Wang, Jingyi.Jia, Chen.Li.
   Winter term, 2018-2019.
 """
-import m1_run_this_on_robot
+import m1_extra
 import m2_run_this_on_robot
 import m3_run_this_on_robot
 
