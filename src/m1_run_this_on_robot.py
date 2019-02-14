@@ -53,6 +53,7 @@ def camera():
 
 def feature_10():
     robot = rosebot.RoseBot()
+    robot.drive_system.spin_clockwise_until_sees_object(100, 500)
     robot.drive_system.go(50,50)
     distance = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
     print(distance)
