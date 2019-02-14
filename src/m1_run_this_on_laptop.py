@@ -18,10 +18,13 @@ def main():
     mqtt_sender.connect_to_ev3()
     root = tkinter.Tk()
     root.title('CSSE 120 Capstone Project')
-    main_frame = ttk.Frame(root, padding=10, borderwidth = 5,relief='groove')
+    main_frame = ttk.Frame(root, padding = 10, borderwidth = 5,relief='groove')
     main_frame.grid()
     teleop_frame, arm_frame,control_frame, sound_frame, color_frame, distance_frame, camera_frame = get_shared_frames(main_frame, mqtt_sender)
     grid_frames(teleop_frame, arm_frame, control_frame, sound_frame,color_frame, distance_frame, camera_frame)
+    fasterbeep_button = ttk.Button(main_frame, text='Faster beep')
+    fasterbeep_button. grid(row = 2, column=1)
+    fasterbeep_button['command'] = lambda: handle_fasterbeep(mqtt_sender)
     root.mainloop()
 def get_shared_frames(main_frame, mqtt_sender):
     teleop_frame = shared_gui.get_teleoperation_frame(main_frame,mqtt_sender)
@@ -41,8 +44,9 @@ def grid_frames(teleop_frame, arm_frame, control_frame,sound_frame,color_frame,d
     distance_frame.grid(row=0,column=1)
     camera_frame.grid(row=1,column=1)
 
-
-
+def handle_fasterbeep(mqtt_sender):
+    print('fasterbeep')
+    mqtt_sender.send_message('fasterbeep')
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------

@@ -166,7 +166,7 @@ def get_control_frame(window, mqtt_sender):
     # Set the Button callbacks:
     quit_robot_button["command"] = lambda: handle_quit(mqtt_sender)
     exit_button["command"] = lambda: handle_exit(mqtt_sender)
-    return  frame
+    return frame
 
 def get_sound_control_frame(window, mqtt_sender):
     frame = ttk.Frame(window,padding=10,borderwidth=5,relief='ridge')
