@@ -40,7 +40,7 @@ def fasterbeep():
         delay = 10*distance
         robot.sound_system.beeper.beep()
         time.sleep(delay)
-        if distance < 50:
+        if distance < 40:
             robot.drive_system.stop()
             break
 
