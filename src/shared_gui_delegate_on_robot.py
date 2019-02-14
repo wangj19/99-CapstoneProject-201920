@@ -8,6 +8,7 @@
 """
 import m1_extra
 import m2_extra
+import m2_run_this_on_robot
 import m3_extra
 
 class Receiver(object):
@@ -119,14 +120,16 @@ class Receiver(object):
 
     def fasterbeep(self):
         print('fasterbeep')
-        m1_run_this_on_robot.fasterbeep()
+        m1_extra.fasterbeep()
 
     def get_closer_tone(self):
         print('Get closer and tone more frequency')
-        m2_run_this_on_robot.get_closer_tone()
+        m2_extra.get_closer_tone()
 
     def led(self):
         print('caonima')
         m3_extra.led()
 
+def m2_blah():
+    m2_extra.get_closer_tone()
 
