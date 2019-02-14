@@ -31,7 +31,12 @@ def real_thing():
         if receiver.is_time_to_stop:
             break
 
-
+def camera():
+    robot = rosebot.RoseBot()
+    robot.drive_system.display_camera_data()
+    robot.drive_system.spin_counterclockwise_until_beacon_heading_is_nonpositive(100, 500)
+    time.sleep(5)
+    robot.drive_system.spin_clockwise_until_beacon_heading_is_nonnegative(50, 500)
 
 
 

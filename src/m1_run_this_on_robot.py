@@ -14,6 +14,7 @@ import shared_gui_delegate_on_robot as rec
 def main():
 
     real_thing()
+    fasterbeep()
 
 
 def real_thing():
@@ -38,7 +39,7 @@ def fasterbeep():
         delay = 1000-k
         tones = [frequency, duration, delay]
         robot.sound_system.tone_maker.play_tone_sequence(tones)
-         
+
 
 
 
