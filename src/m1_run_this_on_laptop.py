@@ -18,7 +18,7 @@ def main():
     mqtt_sender.connect_to_ev3()
     root = tkinter.Tk()
     root.title('CSSE 120 Capstone Project')
-    main_frame = ttk.Frame(root, padding=10, borderwidth = 5,relief='groove')
+    main_frame = ttk.Frame(root, padding = 10, borderwidth = 5,relief='groove')
     main_frame.grid()
     teleop_frame, arm_frame,control_frame, sound_frame, color_frame, distance_frame, camera_frame = get_shared_frames(main_frame, mqtt_sender)
     grid_frames(teleop_frame, arm_frame, control_frame, sound_frame,color_frame, distance_frame, camera_frame)

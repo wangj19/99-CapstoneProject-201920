@@ -6,6 +6,9 @@
     and Jiadi. Wang, Jingyi.Jia, Chen.Li.
   Winter term, 2018-2019.
 """
+import m1_run_this_on_robot
+import m2_run_this_on_robot
+import m3_run_this_on_robot
 
 class Receiver(object):
     def __init__(self, robot):
@@ -116,4 +119,9 @@ class Receiver(object):
 
     def fasterbeep(self):
         print('fasterbeep')
-        self.robot.drive_system.fasterbeep()
+        m1_run_this_on_robot.fasterbeep()
+
+    def get_closer_tone(self):
+        print('Get closer and tone more frequency')
+        m2_run_this_on_robot.get_closer_tone()
+

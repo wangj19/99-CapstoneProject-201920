@@ -57,6 +57,9 @@ def main():
     # Grid the frames.
     # -------------------------------------------------------------------------
     grid_frames(teleop_frame, arm_frame, control_frame, sound_frame)
+    get_closer_tone_button = ttk.Button(main_frame, text = "more frequency when get closer")
+    get_closer_tone_button.grid(row=1,column=3)
+    get_closer_tone_button['command']=lambda: handle_get_closer_tone(mqtt_sender)
 
     # -------------------------------------------------------------------------
     # The event loop:
@@ -79,7 +82,9 @@ def grid_frames(teleop_frame, arm_frame, control_frame,sound_frame):
     sound_frame.grid(row=3,column=0)
 
 
-
+def handle_get_closer_tone(mqtt_sender):
+    print('More frequency when closer')
+    mqtt_sender.send_message('get_closer_tone')
 
 
 

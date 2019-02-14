@@ -71,7 +71,7 @@ class DriveSystem(object):
         self.sensor_system = sensor_system
         self.left_motor = Motor('B')
         self.right_motor = Motor('C')
-        self.sound_system = SoundSystem
+
 
 
         self.wheel_circumference = 1.3 * math.pi
@@ -312,19 +312,7 @@ class DriveSystem(object):
     # Methods for driving that use the camera.
     # -------------------------------------------------------------------------
 
-    def fasterbeep(self):
-        self.go(50, 50)
-        distance = self.sensor_system.ir_proximity_sensor.get_distance_in_inches()
-        print(distance)
-        frequency = 400
-        while True:
-            duration = 1000 - 500 / distance
-            delay = 1000 - 500 / distance
-            tones = [frequency, duration, delay]
-            self.sound_system.tone_maker.play_tone_sequence(tones)
-            if distance < 1:
-                self.stop()
-                break
+
 
 ###############################################################################
 #    ArmAndClaw
