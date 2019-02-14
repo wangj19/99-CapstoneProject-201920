@@ -268,7 +268,7 @@ def camera_frame(window, mqtt_sender):
     frame = ttk.Frame(window, padding=10, borderwidth=5, relief='ridge')
     frame.grid()
     frame_label = ttk.Label(frame, text='Camera oontrol')
-    frame_label.grid(row=0, column = 2)
+    frame_label.grid(row=0, column = 1)
     speed_label = ttk.Label(frame, text='Speed')
     speed_label.grid(row=1, column=1)
     speed_entry = ttk.Entry(frame, width=8)
