@@ -129,6 +129,4 @@ class Receiver(object):
         print('caonima')
         m3_extra.led()
 
-def m2_blah():
-    m2_extra.get_closer_tone()
 
