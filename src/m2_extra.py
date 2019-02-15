@@ -4,9 +4,7 @@ import rosebot
 
 
 
-def main():
 
-    get_closer_tone()
 
 
 
@@ -24,6 +22,3 @@ def get_closer_tone():
             break
 
 
-
-
-main()

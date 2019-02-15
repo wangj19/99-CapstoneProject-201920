@@ -16,7 +16,6 @@
 
 import tkinter
 from tkinter import ttk
-import m2_extra
 import time
 import rosebot
 
