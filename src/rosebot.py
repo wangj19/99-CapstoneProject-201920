@@ -815,7 +815,7 @@ class Blob(object):
         self.center = center
         self.width = width
         self.height = height
-        self.screen_limits = Point(320, 240)  # FIXME
+        self.screen_limits = Point(320, 240)
 
     def __repr__(self):
         return "center: ({:3d}, {:3d})  width, height: {:3d} {:3d}.".format(

@@ -442,10 +442,10 @@ def handle_go_until_within(delta_entry, inches_entry, speed_entry,mqtt_sender):
 ##############################################################################
 def handle_clockwise(speed_entry, area_entry, mqtt_sender):
     print('Clockwise', area_entry.get())
-    mqtt_sender.send_message('clockwise_area',[area_entry.get(),speed_entry.get()])
+    mqtt_sender.send_message('clockwise_area',[speed_entry.get(),area_entry.get()])
 def handle_counterclockwise(speed_entry, area_entry, mqtt_sender):
     print('Counterclockwise', area_entry.get())
-    mqtt_sender.send_message('counterclockwise_area',[area_entry.get(),speed_entry.get()])
+    mqtt_sender.send_message('counterclockwise_area',[speed_entry.get(),area_entry.get()])
 ###############################################################################
 # Handlers for Buttons in the Control frame.
 ###############################################################################

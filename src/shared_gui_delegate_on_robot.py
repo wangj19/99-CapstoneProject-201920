@@ -109,13 +109,13 @@ class Receiver(object):
         print('go until distance is within', int(delta), int(inches))
         self.robot.drive_system.go_until_distance_is_within(int(delta), int(inches), int(speed))
 
-    def clockwise_area(self, area, speed):
+    def clockwise_area(self, speed, area):
         print('Go clockwise until area', int(area))
-        self.robot.drive_system.spin_clockwise_until_sees_object(int(area),int(speed))
+        self.robot.drive_system.spin_clockwise_until_sees_object(int(speed),int(area))
 
-    def counterclockwise_area(self, area, speed):
+    def counterclockwise_area(self, speed, area):
         print('Go counterclockwise until area', int(area))
-        self.robot.drive_system.spin_counterclockwise_until_sees_object(int(area),int(speed))
+        self.robot.drive_system.spin_counterclockwise_until_sees_object(int(speed),int(ares))
 
     def fasterbeep(self):
         print('fasterbeep')
