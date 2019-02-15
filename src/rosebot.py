@@ -278,7 +278,7 @@ class DriveSystem(object):
     def display_camera_data(self):
 
 
-        print(self.sensor_system.camera.get_biggest_blob().center)
+        print(self.sensor_system.camera.get_biggest_blob().center())
         """
         Prints on the Console the Blob data of the Blob that the camera sees
         (if any).
