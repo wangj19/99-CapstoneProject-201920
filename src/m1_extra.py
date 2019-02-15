@@ -16,4 +16,3 @@ def fasterbeep():
             break
 
 
-main()
