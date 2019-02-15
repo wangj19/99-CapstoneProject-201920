@@ -115,7 +115,7 @@ class Receiver(object):
 
     def counterclockwise_area(self, speed, area):
         print('Go counterclockwise until area', int(area))
-        self.robot.drive_system.spin_counterclockwise_until_sees_object(int(speed),int(ares))
+        self.robot.drive_system.spin_counterclockwise_until_sees_object(int(speed),int(area))
 
     def fasterbeep(self):
         print('fasterbeep')
