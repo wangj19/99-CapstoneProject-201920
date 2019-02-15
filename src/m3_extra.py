@@ -2,8 +2,6 @@ import rosebot
 import time
 
 
-def main():
-    led()
 
 
 
@@ -35,4 +33,3 @@ def led():
 #     robot.drive_system.spin_clockwise_until_sees_object(100, 500)
 
 
-main()

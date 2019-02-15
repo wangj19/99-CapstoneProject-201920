@@ -15,7 +15,5 @@ def fasterbeep():
             robot.drive_system.stop()
             break
 
-def main():
-    fasterbeep()
 
 main()
