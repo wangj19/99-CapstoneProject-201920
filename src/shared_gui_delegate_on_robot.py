@@ -129,4 +129,8 @@ class Receiver(object):
         print('caonima')
         m3_extra.led()
 
+    def find_stage(self):
+        print('find stage')
+        m1_extra.find_stage
+
 

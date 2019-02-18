@@ -12,7 +12,27 @@ import tkinter
 from tkinter import ttk
 import shared_gui
 
+def project_frame():
+    mqtt_sender = com.MqttClient()
+    mqtt_sender.connect_to_ev3()
+    root = tkinter.Tk()
+    root.title('EV3 Super Star')
+    project_frame = ttk.Frame(root, padding= 10, borderwidth = 5,relief='groove')
+    project_frame.grid()
 
+    find_stage_button = ttk.Button(project_frame, text= 'Find Stage')
+    find_stage_button.grid(row = 1, column = 0)
+    find_stage_button['command'] = lambda: handle_find_stage(mqtt_sender)
+
+
+    quit_robot_button = ttk.Button(project_frame, text="QUIT")
+    exit_button = ttk.Button(project_frame, text="EXIT")
+    quit_robot_button.grid(row=4, column=0)
+    exit_button.grid(row=4, column=2)
+    quit_robot_button["command"] = lambda: handle_quit(mqtt_sender)
+    exit_button["command"] = lambda: handle_exit(mqtt_sender)
+
+    root.mainloop()
 def main():
     mqtt_sender = com.MqttClient()
     mqtt_sender.connect_to_ev3()
@@ -23,7 +43,7 @@ def main():
     teleop_frame, arm_frame,control_frame, sound_frame, color_frame, distance_frame, camera_frame = get_shared_frames(main_frame, mqtt_sender)
     grid_frames(teleop_frame, arm_frame, control_frame, sound_frame,color_frame, distance_frame, camera_frame)
     fasterbeep_button = ttk.Button(main_frame, text='Faster beep')
-    fasterbeep_button. grid(row = 2, column=1)
+    fasterbeep_button. grid(row = 2, column=3)
     fasterbeep_button['command'] = lambda: handle_fasterbeep(mqtt_sender)
     root.mainloop()
 def get_shared_frames(main_frame, mqtt_sender):
@@ -50,4 +70,14 @@ def handle_fasterbeep(mqtt_sender):
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
-main()
+def handle_quit(mqtt_sender):
+    print('quit')
+    mqtt_sender.send_message('quit')
+def handle_exit(mqtt_sender):
+    print('exit')
+    handle_quit(mqtt_sender)
+    exit()
+def handle_find_stage(mqtt_sender):
+    print('find stage')
+    mqtt_sender.send_message('find_stage')
+project_frame()
