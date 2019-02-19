@@ -110,11 +110,11 @@ def hug_fans():
     while True:
         time1 = time.time()
         dis = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
-        if dis < 35:
+        if dis < 1:
             robot.drive_system.stop()
             time_d = time.time() - time1
             break
-    robot.arm_and_claw.move_arm_to_position(500)
+    robot.arm_and_claw.move_arm_to_position(1200)
     robot.arm_and_claw.lower_arm()
     robot.drive_system.go(-30,-30)
     time.sleep(time_d)
@@ -123,7 +123,7 @@ def hug_fans():
 def have_five_with_fans():
     robot = rosebot.RoseBot()
     time1 = time.time()
-    robot.drive_system.spin_counterclockwise_until_sees_object(50, 200)
+    robot.drive_system.spin_clockwise_until_sees_object(50, 100)
     time_d = time.time()-time1
     robot.arm_and_claw.move_arm_to_position(2000)
     robot.drive_system.go(40,40)
@@ -133,7 +133,7 @@ def have_five_with_fans():
     robot.drive_system.go(-40,-40)
     time.sleep(0.8)
     robot.arm_and_claw.lower_arm()
-    robot.drive_system.go(50,-50)
+    robot.drive_system.go(-50,50)
     time.sleep(time_d)
     robot.drive_system.stop()
 
