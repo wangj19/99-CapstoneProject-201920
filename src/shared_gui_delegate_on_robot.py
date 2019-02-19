@@ -133,6 +133,21 @@ class Receiver(object):
         print('Final Week Tasks')
         m2_extra.final_week()
 
-
-
-
+    def find_stage(self):
+        print('find stage')
+        m1_extra.find_stage()
+    def leave_stage(self):
+        print('leave stage')
+        m1_extra.leave_stage()
+    def dance(self):
+        print('dance')
+        m1_extra.dance()
+    def play_music(self):
+        print('play music')
+        m1_extra.play_music()
+    def hug_fans(self):
+        print('hug fans')
+        m1_extra.hug_fans()
+    def have_five_with_fans(self):
+        print('have five with fans')
+        m1_extra.have_five_with_fans()
