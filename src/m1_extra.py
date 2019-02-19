@@ -31,8 +31,9 @@ def find_stage():
     robot.sound_system.speech_maker.speak('welcome ladies and gentleman')
 
 def dance():
-    for k in range(2):
         dance_movement1()
+        dance_movement2()
+        dance_movement3()
         dance_movement2()
 
 def dance_movement1():
@@ -56,6 +57,17 @@ def dance_movement2():
     robot.arm_and_claw.move_arm_to_position(4000)
     robot.drive_system.go(30,30)
     time.sleep(0.5)
+    robot.drive_system.stop()
+    robot.arm_and_claw.lower_arm()
+
+def dance_movement3():
+    robot = rosebot.RoseBot()
+    robot.drive_system.go(-80,80)
+    time.sleep(0.4)
+    robot.drive_system.stop()
+    robot.arm_and_claw.move_arm_to_position(3500)
+    robot.drive_system.go(80,-80)
+    time.sleep(0.4)
     robot.drive_system.stop()
     robot.arm_and_claw.lower_arm()
 
@@ -104,7 +116,7 @@ def hug_fans():
             break
     robot.arm_and_claw.move_arm_to_position(500)
     robot.arm_and_claw.lower_arm()
-    robot.drive_system(-30,-30)
+    robot.drive_system.go(-30,-30)
     time.sleep(time_d)
     robot.drive_system.stop()
 
