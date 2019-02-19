@@ -12,18 +12,21 @@ import shared_gui_delegate_on_robot as rec
 
 
 def main():
-    real_thing()
-
     """
     This code, which must run on the EV3 ROBOT:
       1. Makes the EV3 robot to various things.
       2. Communicates via MQTT with the GUI code that runs on the LAPTOP.
     """
+    real_thing()
+
+
+
 def real_thing():
     robot = rosebot.RoseBot()
     receiver = rec.Receiver(robot)
     mqtt_receiver = com.MqttClient(receiver)
     mqtt_receiver.connect_to_pc()
+
 
     while True:
         time.sleep(0.01)

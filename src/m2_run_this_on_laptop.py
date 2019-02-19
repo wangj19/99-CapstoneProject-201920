@@ -93,7 +93,7 @@ def handle_get_closer_tone(mqtt_sender):
     mqtt_sender.send_message('get_closer_tone')
 
 def handle_final_week(mqtt_sender):
-    print('Final Week Tasks')
+    print('final week tasks')
     mqtt_sender.send_message('final_week_task')
 
 

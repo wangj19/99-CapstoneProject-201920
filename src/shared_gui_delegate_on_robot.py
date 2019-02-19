@@ -131,7 +131,7 @@ class Receiver(object):
 
 
 
-    def final_week (self):
+    def final_week_task (self):
         print('Final Week Tasks')
         m2_extra.final_week()
 
