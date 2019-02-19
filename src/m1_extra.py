@@ -43,8 +43,9 @@ def dance_movement1():
     robot.arm_and_claw.move_arm_to_position(3500)
     robot.drive_system.go(-30,30)
     time.sleep(0.6)
-    robot.arm_and_claw.lower_arm()
     robot.drive_system.stop()
+    robot.arm_and_claw.lower_arm()
+
 
 def dance_movement2():
     robot = rosebot.RoseBot()
