@@ -1,8 +1,8 @@
 import rosebot
 import time
 
-robot = rosebot.RoseBot
 def fasterbeep():
+    robot = rosebot.RoseBot()
     robot.drive_system.go(30,30)
     while True:
         distance = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
@@ -14,18 +14,20 @@ def fasterbeep():
             break
 
 def find_stage():
+    robot = rosebot.RoseBot()
     robot.drive_system.go(50,50)
     while True:
         distance = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
         delay = distance / 300
         robot.sound_system.tone_maker.play_tone(distance*3, 200)
         time.sleep(delay)
-        if robot.sensor_system.color_sensorget_color_as_name() != 'Red':
+        if robot.sensor_system.color_sensor.get_color_as_name() != 'Red':
             robot.drive_system.stop()
             break
     time.sleep(0.2)
     robot.drive_system.go(30,30)
     time.sleep(0.3)
+    robot.drive_system.stop()
     robot.sound_system.speech_maker.speak('welcome ladies and gentleman')
 
 def dance():
@@ -34,6 +36,7 @@ def dance():
         dance_movement2()
 
 def dance_movement1():
+    robot = rosebot.RoseBot()
     robot.drive_system.go(30,-30)
     time.sleep(0.3)
     robot.drive_system.stop()
@@ -44,6 +47,7 @@ def dance_movement1():
     robot.drive_system.stop()
 
 def dance_movement2():
+    robot = rosebot.RoseBot()
     robot.arm_and_claw.move_arm_to_position(2000)
     robot.drive_system.go(-20,-20)
     time.sleep(0.5)
@@ -55,8 +59,9 @@ def dance_movement2():
     robot.arm_and_claw.lower_arm()
 
 def play_music():
+    robot = rosebot.RoseBot()
     robot.arm_and_claw.move_arm_to_position(2500)
-    robot.sound_system.tone_makertone_player.play_tone_sequence([
+    robot.sound_system.tone_player.play_tone_sequence([
         (392, 350, 100), (392, 350, 100), (392, 350, 100), (311.1, 250, 100),
         (466.2, 25, 100), (392, 350, 100), (311.1, 250, 100), (466.2, 25, 100),
         (392, 700, 100), (587.32, 350, 100), (587.32, 350, 100),
@@ -87,6 +92,7 @@ def play_music():
     robot.arm_and_claw.lower_arm()
 
 def hug_fans():
+    robot = rosebot.RoseBot()
     robot.drive_system.go(30,30)
     while True:
         time1 = time.time()
@@ -102,6 +108,7 @@ def hug_fans():
     robot.drive_system.stop()
 
 def have_five_with_fans():
+    robot = rosebot.RoseBot()
     time1 = time.time()
     robot.drive_system.spin_counterclockwise_until_sees_object(50, 200)
     time_d = time.time()-time1
@@ -118,6 +125,8 @@ def have_five_with_fans():
     robot.drive_system.stop()
 
 def leave_stage():
+    robot = rosebot.RoseBot()
+    robot.sound_system.speech_maker.speak('Goodbye guys')
     robot.drive_system.go(-50,-50)
-    time.sleep(1.5)
+    time.sleep(1)
     robot.drive_system.stop()
