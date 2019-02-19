@@ -37,12 +37,12 @@ def dance():
 
 def dance_movement1():
     robot = rosebot.RoseBot()
-    robot.drive_system.go(30,-30)
-    time.sleep(0.3)
+    robot.drive_system.go(80,-80)
+    time.sleep(0.4)
     robot.drive_system.stop()
     robot.arm_and_claw.move_arm_to_position(3500)
-    robot.drive_system.go(-30,30)
-    time.sleep(0.6)
+    robot.drive_system.go(-80,80)
+    time.sleep(0.4)
     robot.drive_system.stop()
     robot.arm_and_claw.lower_arm()
 
@@ -50,11 +50,11 @@ def dance_movement1():
 def dance_movement2():
     robot = rosebot.RoseBot()
     robot.arm_and_claw.move_arm_to_position(2000)
-    robot.drive_system.go(-20,-20)
+    robot.drive_system.go(-30,-30)
     time.sleep(0.5)
     robot.drive_system.stop()
     robot.arm_and_claw.move_arm_to_position(4000)
-    robot.drive_system.go(20,20)
+    robot.drive_system.go(30,30)
     time.sleep(0.5)
     robot.drive_system.stop()
     robot.arm_and_claw.lower_arm()
