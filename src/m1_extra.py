@@ -107,10 +107,10 @@ def play_music():
 def hug_fans():
     robot = rosebot.RoseBot()
     robot.drive_system.go(30,30)
+    time1= time.time()
     while True:
-        time1 = time.time()
         dis = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
-        if dis < 1:
+        if dis < 20:
             robot.drive_system.stop()
             time_d = time.time() - time1
             break
