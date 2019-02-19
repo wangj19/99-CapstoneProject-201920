@@ -129,9 +129,7 @@ class Receiver(object):
         print('caonima')
         m3_extra.led()
 
-    def find_stage(self):
-        print('find stage')
-        m1_extra.find_stage
+
 
     def final_week (self):
         print('Final Week Tasks')
