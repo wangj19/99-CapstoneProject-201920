@@ -20,7 +20,6 @@ def get_closer_tone():
 delay = 400
 
 def final_week():
-
     task_complete = 0
     robot = rosebot.RoseBot()
     distance = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
@@ -48,6 +47,7 @@ def final_week():
                 time.sleep(delay)
                 robot.sound_system.tone_maker(500, 500)
                 task_complete = task_complete + 1
+                robot.drive_system.go_straight_for_seconds(2, 20)
                 break
         return math_final_exam(task_complete)
 
@@ -60,6 +60,7 @@ def final_week():
                 time.sleep(delay)
                 robot.sound_system.tone_maker(500, 500)
                 task_complete = task_complete + 1
+                robot.drive_system.go_straight_for_seconds(2, 20)
                 break
         return physics_final_exam(task_complete)
 
@@ -72,6 +73,7 @@ def final_week():
                 time.sleep(delay)
                 robot.sound_system.tone_maker(500, 500)
                 task_complete = task_complete + 1
+                robot.drive_system.go_straight_for_seconds(2, 20)
                 break
         return ece_final_exam(task_complete)
 
@@ -84,6 +86,7 @@ def final_week():
                 time.sleep(delay)
                 robot.sound_system.tone_maker(500, 500)
                 task_complete = task_complete + 1
+                robot.drive_system.go_straight_for_seconds(2,20)
                 break
         return chemistry_final_exam(task_complete)
 
@@ -96,5 +99,7 @@ def final_week():
                 time.sleep(delay)
                 robot.sound_system.tone_maker(500, 500)
                 task_complete = task_complete + 1
+                robot.drive_system.go_straight_for_seconds(2, 20)
                 break
         return csse_project(task_complete)
+

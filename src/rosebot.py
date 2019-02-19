@@ -52,7 +52,8 @@ class DriveSystem(object):
     # -------------------------------------------------------------------------
     # NOTE:
     #   Throughout, when going straight:
-    #     -- Positive speeds should make the robot move forward.
+    #     -- Positive speeds
+    #    should make the robot move forward.
     #     -- Negative speeds should make the robot move backward.
     #   Throughout, when spinning:
     #     -- Positive speeds should make the robot spin in place clockwise
@@ -988,6 +989,7 @@ class SongMaker(object):
 ###############################################################################
 class LED(object):
     """
+
     Each LED has a RED and a GREEN component.
     """
 
@@ -1056,3 +1058,4 @@ class BeaconButton(object):
 ###############################################################################
 class BrickButton(object):
     pass
+

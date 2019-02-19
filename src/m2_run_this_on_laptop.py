@@ -61,6 +61,10 @@ def main():
     get_closer_tone_button.grid(row=1,column=3)
     get_closer_tone_button['command']=lambda: handle_get_closer_tone(mqtt_sender)
 
+    final_week_button = ttk.Button(main_frame, text = "Alan's Final Week Tasks")
+    final_week_button.grid(row=2,column = 3)
+    final_week_button['command']=lambda: handle_final_week(mqtt_sender)
+
     # -------------------------------------------------------------------------
     # The event loop:
     # -------------------------------------------------------------------------
@@ -87,6 +91,10 @@ def grid_frames(teleop_frame, arm_frame, control_frame,sound_frame,camera_frame)
 def handle_get_closer_tone(mqtt_sender):
     print('More frequency when closer')
     mqtt_sender.send_message('get_closer_tone')
+
+def handle_final_week(mqtt_sender):
+    print('Final Week Tasks')
+    mqtt_sender.send_message('final_week_task')
 
 
 
