@@ -62,7 +62,7 @@ def dance_movement2():
 def play_music():
     robot = rosebot.RoseBot()
     robot.arm_and_claw.move_arm_to_position(2500)
-    robot.sound_system.tone_player.play_tone_sequence([
+    robot.sound_system.tone_maker.play_tone_sequence([
         (392, 350, 100), (392, 350, 100), (392, 350, 100), (311.1, 250, 100),
         (466.2, 25, 100), (392, 350, 100), (311.1, 250, 100), (466.2, 25, 100),
         (392, 700, 100), (587.32, 350, 100), (587.32, 350, 100),
