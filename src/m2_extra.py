@@ -18,61 +18,31 @@ def get_closer_tone():
             break
 
 
+def final_week(robot):
+    distance = robot.sensor_system.ir_proximity_sensor.get_distance()
 
-def final_week():
-    delay = 400
-    robot = rosebot.RoseBot()
-    task_complete = 0
-    robot.sound_system.speech_maker.speak('Final week starts')
-    robot.drive_system.go(20, 20)
+    robot.sound_system.speech_maker.speak('Final week starts').wait()
 
+    if distance >20:
+        line_follower(robot)
+
+    else:
+        robot.drive_system.stop()
+        time.sleep(0.2)
+        robot.sound_system.speech_maker.speak('Cannot go forward').wait()
+
+
+def line_follower(robot):
     distance = robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
 
-    if robot.sensor_system.color_sensor.COLOR_NUMBERS == 1:
-        robot.sound_system.speech_maker.speak('Computer Science Project')
-        robot.drive_system.stop()
-        time.sleep(delay)
-        robot.sound_system.tone_maker(500, 500)
-        task_complete = task_complete + 1
-        robot.drive_system.go_straight_for_seconds(2, 20)
+    while True:
+            if abs(robot.sensor_system.color_sensor.get_reflected_light_intensity()) < 10:
+                robot.drive_system.go(20, 45)
+                robot.led_system.right_led.turn_on()
+                robot.led_system.right_led.turn_on()
 
-    if robot.sensor_system.color_sensor.COLOR_NUMBERS == 2:
-        robot.sound_system.speech_maker.speak('Chemistry Final')
-        robot.drive_system.stop()
-        time.sleep(delay)
-        robot.sound_system.tone_maker(500, 500)
-        task_complete = task_complete + 1
-        robot.drive_system.go_straight_for_seconds(2, 20)
-
-    if robot.sensor_system.color_sensor.COLOR_NUMBERS == 3:
-        robot.sound_system.speech_maker.speak('Math Final')
-        robot.drive_system.stop()
-        time.sleep(delay)
-        robot.sound_system.tone_maker(500, 500)
-        task_complete = task_complete + 1
-        robot.drive_system.go_straight_for_seconds(2, 20)
-
-    if robot.sensor_system.color_sensor.COLORS == 6:
-        robot.sound_system.speech_maker.speak('Electric Engineering Final')
-        robot.drive_system.stop()
-        time.sleep(delay)
-        robot.sound_system.tone_maker(500, 500)
-        task_complete = task_complete + 1
-        robot.drive_system.go_straight_for_seconds(2, 20)
-
-    if robot.sensor_system.color_sensor.COLOR_NUMBERS == 5:
-        robot.sound_system.speech_maker.speak('Physics Final')
-        robot.drive_system.stop()
-        time.sleep(delay)
-        robot.sound_system.tone_maker(500, 500)
-        task_complete = task_complete + 1
-        robot.drive_system.go_straight_for_seconds(2, 20)
-
-
-    if task_complete == 5:
-        robot.drive_system.go(30, 30)
-        if distance < 30:
-            robot.drive_system.stop()
-            robot.arm_and_claw.raise_arm()
-            robot.sound_system.speech_maker.speak('End of Final Week')
-            robot.arm_and_claw.lower_arm()
+            else:
+                robot.drive_system.go(45, 20)
+                robot.sound_system.tone_maker.play_tone(distance * 5, 100)
+                robot.led_system.left_led.turn_on()
+                robot.led_system.left_led.turn_on()

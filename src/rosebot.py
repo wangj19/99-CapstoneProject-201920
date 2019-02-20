@@ -14,6 +14,8 @@
 import ev3dev.ev3 as ev3
 import time
 import math
+from time import sleep
+
 
 
 ###############################################################################

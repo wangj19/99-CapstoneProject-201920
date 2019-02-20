@@ -133,7 +133,7 @@ class Receiver(object):
 
     def final_week_task (self):
         print('Final Week Tasks')
-        m2_extra.final_week()
+        m2_extra.final_week(self.robot)
 
 
 
