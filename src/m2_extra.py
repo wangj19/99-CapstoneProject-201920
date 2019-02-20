@@ -40,10 +40,12 @@ def line_follower(robot):
             if abs(robot.sensor_system.color_sensor.get_reflected_light_intensity()) < 10:
                 robot.drive_system.go(20, 45)
                 robot.led_system.right_led.turn_on()
+                robot.led_system.right_led.turn_off()
                 robot.led_system.right_led.turn_on()
 
             else:
                 robot.drive_system.go(45, 20)
                 robot.sound_system.tone_maker.play_tone(distance * 5, 100)
                 robot.led_system.left_led.turn_on()
+                robot.led_system.left_led.turn_off()
                 robot.led_system.left_led.turn_on()
