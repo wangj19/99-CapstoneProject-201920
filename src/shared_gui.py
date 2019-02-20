@@ -319,7 +319,7 @@ def handle_backward(left_entry_box, right_entry_box, mqtt_sender):
 
 def handle_left(left_entry_box, right_entry_box, mqtt_sender):
     print('Go Left', -int(left_entry_box.get()), int(right_entry_box.get()))
-    mqtt_sender.send_message('left',[left_entry_box.get(), right_entry_box.get()])
+    mqtt_sender.send_message('right',[left_entry_box.get(), right_entry_box.get()])
     """
     Tells the robot to move using the speeds in the given entry boxes,
     but using the negative of the speed in the left entry box.
