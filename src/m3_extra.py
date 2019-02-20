@@ -19,7 +19,7 @@ def led():
         time.sleep(delay)
         robot.led_system.left_led.turn_off()
         robot.led_system.right_led.turn_off()
-        if distance < 30:
+        if distance < 20:
             robot.drive_system.stop()
             break
 

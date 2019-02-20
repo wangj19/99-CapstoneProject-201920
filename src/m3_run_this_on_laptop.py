@@ -20,8 +20,8 @@ def main():
     root.title('CSSE 120 Capstone Project')
     main_frame = ttk.Frame(root, padding=10, borderwidth = 5,relief='groove')
     main_frame.grid()
-    teleop_frame, arm_frame,control_frame, sound_frame, color_frame, distance_frame, camera_frame = get_shared_frames(main_frame, mqtt_sender)
-    grid_frames(teleop_frame, arm_frame, control_frame, sound_frame,color_frame, distance_frame, camera_frame)
+    teleop_frame, arm_frame,camera_frame = get_shared_frames(main_frame, mqtt_sender)
+    grid_frames(teleop_frame, arm_frame, camera_frame)
     led_button = ttk.Button(main_frame, text = 'led')
     led_button.grid(row = 2, column = 2)
     led_button['command'] = lambda:handle_led(mqtt_sender)
@@ -29,19 +29,11 @@ def main():
 def get_shared_frames(main_frame, mqtt_sender):
     teleop_frame = shared_gui.get_teleoperation_frame(main_frame,mqtt_sender)
     arm_frame = shared_gui.get_arm_frame(main_frame, mqtt_sender)
-    control_frame = shared_gui.get_control_frame(main_frame, mqtt_sender)
-    sound_frame = shared_gui.get_sound_control_frame(main_frame, mqtt_sender)
-    color_frame = shared_gui.color_frame(main_frame, mqtt_sender)
-    distance_frame = shared_gui.distance_frame(main_frame,mqtt_sender)
     camera_frame = shared_gui.camera_frame(main_frame,mqtt_sender)
-    return teleop_frame, arm_frame, control_frame,sound_frame,color_frame,distance_frame,camera_frame
-def grid_frames(teleop_frame, arm_frame, control_frame,sound_frame,color_frame,distance_frame,camera_frame):
+    return teleop_frame, arm_frame, camera_frame
+def grid_frames(teleop_frame, arm_frame,camera_frame):
     teleop_frame.grid(row=0, column=0)
     arm_frame.grid(row =1, column=0)
-    control_frame.grid(row=2,column=0)
-    sound_frame.grid(row=3,column=0)
-    color_frame.grid(row=4, column=0)
-    distance_frame.grid(row=0,column=1)
     camera_frame.grid(row=1,column=1)
 
 def handle_led(mqtt_sender):
